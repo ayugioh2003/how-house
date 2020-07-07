@@ -1,27 +1,29 @@
 <template>
-  <div class="container">
-    <div>
+  <div class="container mx-auto">
+    <div class="text-center">
       <Logo />
-      <h1 class="title">
-        how-house
+
+      <h1 class="title text-5xl">
+        {{ $t('brandname') }}
       </h1>
+      <p>{{ $t('languageNow') }} {{ $i18n.locale }}</p>
+
       <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
+        <nuxt-link
+          v-if="$i18n.locale !== 'en'"
+          :to="switchLocalePath('en')"
+          class="button"
         >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
+          English
+        </nuxt-link>
+
+        <nuxt-link
+          v-if="$i18n.locale !== 'zh-TW'"
+          :to="switchLocalePath('zh-TW')"
+          class="button"
         >
-          GitHub
-        </a>
+          繁體中文
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -31,40 +33,19 @@
 export default {}
 </script>
 
-<style>
+<style lang="scss">
 /* Sample `apply` at-rules with Tailwind CSS
 .container {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+.button {
+  @apply inline-block p-2 border-2 bg-green-400;
+  @apply transition-all;
+  @apply cursor-pointer;
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+  &:hover {
+    @apply border-2 border-green-400 bg-white;
+  }
 }
 </style>

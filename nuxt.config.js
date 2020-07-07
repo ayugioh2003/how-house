@@ -59,12 +59,35 @@ export default {
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
+    // Doc: https://nuxt-community.github.io/nuxt-i18n/basic-usage.html
+    'nuxt-i18n',
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+  /*
+   ** nuxt-i18n module configuration
+   ** See https://nuxt-community.github.io/nuxt-i18n/basic-usage.html
+   */
+  i18n: {
+    locales: ['en', 'zh-TW'],
+    defaultLocale: 'en',
+    vueI18n: {
+      fallbackLocale: 'en',
+      messages: {
+        en: {
+          brandname: 'how-house',
+          languageNow: 'Language now is ',
+        },
+        'zh-TW': {
+          brandname: '好房子',
+          languageNow: '現在語言是 ',
+        },
+      },
+    },
+  },
   /*
    ** Content module configuration
    ** See https://content.nuxtjs.org/configuration
