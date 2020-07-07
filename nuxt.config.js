@@ -72,16 +72,24 @@ export default {
    ** See https://nuxt-community.github.io/nuxt-i18n/basic-usage.html
    */
   i18n: {
-    locales: ['en', 'zh-TW'],
+    locales: ['en', 'tw'],
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
       messages: {
         en: {
+          header: {
+            index: 'index',
+            about: 'about',
+          },
           brandname: 'how-house',
           languageNow: 'Language now is ',
         },
-        'zh-TW': {
+        'tw': {
+          header: {
+            index: '首頁',
+            about: '關於',
+          },
           brandname: '好房子',
           languageNow: '現在語言是 ',
         },

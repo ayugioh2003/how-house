@@ -3,6 +3,9 @@
     <div class="text-center">
       <Logo />
 
+      <nuxt-link :to="localePath('index')">{{ $t('header.index') }}</nuxt-link>
+      <nuxt-link :to="localePath('about')">{{ $t('header.about') }}</nuxt-link>
+
       <h1 class="title text-5xl">
         {{ $t('brandname') }}
       </h1>
@@ -18,8 +21,8 @@
         </nuxt-link>
 
         <nuxt-link
-          v-if="$i18n.locale !== 'zh-TW'"
-          :to="switchLocalePath('zh-TW')"
+          v-if="$i18n.locale !== 'tw'"
+          :to="switchLocalePath('tw')"
           class="button"
         >
           繁體中文
@@ -40,12 +43,13 @@ export default {}
 }
 */
 .button {
-  @apply inline-block p-2 border-2 bg-green-400;
+  @apply inline-block p-2 border-2;
+  @apply border-green-400 bg-white;
   @apply transition-all;
   @apply cursor-pointer;
 
   &:hover {
-    @apply border-2 border-green-400 bg-white;
+    @apply bg-green-400;
   }
 }
 </style>
