@@ -75,6 +75,15 @@ export default {
    */
   i18n: i18n,
   /*
+   ** tailwindcss module configuration
+   ** See https://github.com/nuxt-community/tailwindcss-module
+   ** Demo https://codesandbox.io/s/l3d5j?file=/nuxt.config.js:162-173
+   */
+  tailwindcss: {
+    configPath: './tailwind.config.js',
+    cssPath: '~/assets/scss/tailwind.scss',
+  },
+  /*
    ** Content module configuration
    ** See https://content.nuxtjs.org/configuration
    */
