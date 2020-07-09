@@ -10,6 +10,8 @@
         {{ $t('brandname') }}
       </h1>
       <p>{{ $t('languageNow') }} {{ $i18n.locale }}</p>
+      <p>{{ $t('test') }}</p>
+      <p>{{ $t('hello') }}</p>
 
       <div class="links">
         <nuxt-link

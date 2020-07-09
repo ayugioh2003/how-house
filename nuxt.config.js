@@ -1,6 +1,4 @@
-import i18n from './i18n/index.js'
-// import i18n from './nuxt-i18n.config'
-
+import i18n from './nuxt-i18n.config'
 
 export default {
   /*

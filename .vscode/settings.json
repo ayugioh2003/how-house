@@ -1,5 +1,7 @@
 {
     "css.validate": false,
     "scss.validate": false,
+    "i18n-ally.localesPaths": "assets/locales",
+    "i18n-ally.keystyle": "nested",
     // "tailwindCSS.validate": false
 }
