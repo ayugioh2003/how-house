@@ -1,3 +1,7 @@
+import i18n from './i18n/index.js'
+// import i18n from './nuxt-i18n.config'
+
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -71,31 +75,7 @@ export default {
    ** nuxt-i18n module configuration
    ** See https://nuxt-community.github.io/nuxt-i18n/basic-usage.html
    */
-  i18n: {
-    locales: ['en', 'tw'],
-    defaultLocale: 'en',
-    vueI18n: {
-      fallbackLocale: 'en',
-      messages: {
-        en: {
-          header: {
-            index: 'index',
-            about: 'about',
-          },
-          brandname: 'how-house',
-          languageNow: 'Language now is ',
-        },
-        'tw': {
-          header: {
-            index: '首頁',
-            about: '關於',
-          },
-          brandname: '好房子',
-          languageNow: '現在語言是 ',
-        },
-      },
-    },
-  },
+  i18n: i18n,
   /*
    ** Content module configuration
    ** See https://content.nuxtjs.org/configuration
