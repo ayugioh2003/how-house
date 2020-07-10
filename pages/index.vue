@@ -11,10 +11,14 @@
     </div>
 
     <!-- Header -->
-    <header class="header container mx-auto">
+    <header class="header container mx-auto relative">
       <h1>HexHotel</h1>
-      <div></div>
-      <div class="reserve-now"></div>
+      <div class="header__image"></div>
+      <div class="reserve-now">
+        <div class="check-input flex-auto">CHECK-in & CHECK-OUT</div>
+        <div class="check-input">ROOM</div>
+        <button class="btn btn-secondary">RESERVE NOW</button>
+      </div>
     </header>
 
     <!-- Recommend -->
@@ -78,6 +82,32 @@ export default {}
     width: 57px;
     height: 57px;
     @apply text-4xl font-bold italic;
+  }
+}
+
+.header {
+  h1 {
+    position: absolute;
+    top: 0;
+    writing-mode: vertical-lr;
+    @apply text-primary;
+    @apply font-bold italic text-5xl;
+  }
+
+  &__image {
+    width: 920px;
+    height: 352px;
+    background-image: url('https://images.unsplash.com/photo-1523594572281-3c9a566b6163?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80');
+    background-position: center 5%;
+    @apply bg-cover bg-no-repeat;
+  }
+
+  .reserve-now {
+    position: absolute;
+    top: 1rem;
+    right: 45px;
+    width: 350px;
+    @apply bg-gray-400;
   }
 }
 </style>
