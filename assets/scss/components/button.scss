@@ -1,0 +1,12 @@
+.btn {
+  width: 350px;
+  height: 72px;
+  @apply transition duration-100;
+
+  &-secondary {
+    @apply bg-secondary text-white;
+    &:hover {
+      @apply bg-secondary-dark;
+    }
+  }
+}
