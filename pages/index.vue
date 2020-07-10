@@ -40,17 +40,19 @@
 
     <!-- Service -->
     <section class="service">
-      <div class="service-header container mx-auto">
-        <div class="service__title">Reserve the best service</div>
-        <div class="service__subtitle">
-          over 50,000 commendations from our guests
+      <div class="service-head">
+        <div class="container mx-auto">
+          <div class="service__title title">Reserve the best service</div>
+          <div class="service__subtitle">
+            over 50,000 commendations from our guests
+          </div>
         </div>
       </div>
       <div class="service-body container mx-auto">
         <div v-for="category in 3" :key="category" class="service-category">
-          <div class="service-head">
-            <div class="service-head__tilte">One person</div>
-            <div class="service-head__subtitle">
+          <div class="service-category-head">
+            <div class="service-category-head__title title">One person</div>
+            <div class="service--category-head__subtitle">
               Enjoy the on and only service
             </div>
           </div>
@@ -126,6 +128,39 @@ export default {}
   &-room {
     @apply w-1/3 mx-gutter;
     @apply text-right;
+    &__image {
+      height: 240px;
+      @apply bg-gray-400;
+      @apply w-full bg-cover bg-center;
+    }
+    &__title {
+      @apply font-bold text-2xl;
+    }
+  }
+}
+
+.service {
+  &-head {
+    height: 352px;
+    background-image: url('https://images.unsplash.com/photo-1523594572281-3c9a566b6163?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80');
+    background-position: center 15%;
+    @apply bg-cover bg-no-repeat;
+    @apply text-right;
+    @apply flex items-end pb-8 mb-12;
+  }
+  &__title {
+    @apply text-primary;
+  }
+  &-category {
+    @apply flex -mx-gutter;
+    &-head {
+      @apply px-gutter w-1/3;
+    }
+  }
+  &-room {
+    @apply px-gutter w-1/3;
+    @apply text-right;
+    @apply mb-12;
     &__image {
       height: 240px;
       @apply bg-gray-400;
