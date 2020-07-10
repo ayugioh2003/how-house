@@ -1,14 +1,7 @@
 <template>
   <div class="index">
-    <!-- Navbar -->
-    <div class="fixed-bar flex">
-      <div class="fixed-bar__logo-wrap">
-        <div class="fixed-bar__logo">HH</div>
-      </div>
-      <div class="check-input flex-auto">CHECK-in & CHECK-OUT</div>
-      <div class="check-input">ROOM</div>
-      <button class="btn btn-secondary">RESERVE NOW</button>
-    </div>
+    <!-- HomeNavBar -->
+    <HomeNavBar />
 
     <!-- Header -->
     <header class="header container mx-auto relative">
@@ -77,21 +70,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.fixed-bar {
-  &__logo-wrap {
-    width: 80px;
-    height: 72px;
-    @apply flex items-center pl-1;
-    @apply text-white bg-primary;
-  }
-  &__logo {
-    width: 57px;
-    height: 57px;
-    @apply text-white text-4xl font-bold italic;
-  }
-}
-
+<style lang="scss" scoped>
 .header {
   h1 {
     position: absolute;
