@@ -1,5 +1,5 @@
 <template>
   <footer class="container mx-auto">
-    <p>© 2019 HexHotel. All rights reserved.</p>
+    <p class="py-4">© 2020 HowHouse. All rights reserved.</p>
   </footer>
 </template>

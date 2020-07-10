@@ -64,14 +64,17 @@
         </div>
       </div>
     </section>
-
-    <!-- Map -->
-    <section class="store-map"></section>
+    <HouseMap />
   </div>
 </template>
 
 <script>
-export default {}
+import HouseMap from '@/components/HouseMap.vue'
+export default {
+  components: {
+    HouseMap,
+  },
+}
 </script>
 
 <style lang="scss">
@@ -103,7 +106,7 @@ export default {}
     height: 352px;
     background-image: url('https://images.unsplash.com/photo-1523594572281-3c9a566b6163?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80');
     background-position: center 5%;
-    @apply bg-cover bg-no-repeat;
+    @apply bg-cover bg-no-repeat w-full;
   }
 
   .reserve-now {
