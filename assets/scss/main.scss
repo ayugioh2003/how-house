@@ -1,5 +1,9 @@
-p {
+* {
   @apply text-primary-gray;
+}
+
+.title {
+  @apply text-4xl font-bold;
 }
 
 @import './components/button.scss';

@@ -23,12 +23,14 @@
 
     <!-- Recommend -->
     <section class="recommend container mx-auto">
-      <div class="recommend__title">Recommend</div>
-      <div class="recommend__subtitle">
-        You may be interested in our popular rooms
+      <div class="recommend-head">
+        <div class="recommend__title title">Recommend</div>
+        <div class="recommend__subtitle">
+          You may be interested in our popular rooms
+        </div>
       </div>
       <div class="recommend-rooms">
-        <div class="recommend-room">
+        <div v-for="room in 3" :key="room" class="recommend-room">
           <div class="recommend-room__image"></div>
           <div class="recommend-room__title">Twin Room</div>
           <div class="recommend-room__price">$3,350 NTD / night</div>
@@ -81,7 +83,7 @@ export default {}
   &__logo {
     width: 57px;
     height: 57px;
-    @apply text-4xl font-bold italic;
+    @apply text-white text-4xl font-bold italic;
   }
 }
 
@@ -108,6 +110,30 @@ export default {}
     right: 45px;
     width: 350px;
     @apply bg-gray-400;
+  }
+}
+
+.recommend {
+  &-head {
+    @apply mb-6;
+  }
+  &__title {
+    @apply text-primary;
+  }
+  &-rooms {
+    @apply flex -mx-gutter;
+  }
+  &-room {
+    @apply w-1/3 mx-gutter;
+    @apply text-right;
+    &__image {
+      height: 240px;
+      @apply bg-gray-400;
+      @apply w-full bg-cover bg-center;
+    }
+    &__title {
+      @apply font-bold text-2xl;
+    }
   }
 }
 </style>

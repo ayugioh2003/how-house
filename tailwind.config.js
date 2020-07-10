@@ -37,6 +37,9 @@ module.exports = {
         shadow: '#00000029',
         danger: '#EA5B5B',
       },
+      spacing: {
+        gutter: '15px',
+      },
     },
   },
   variants: {},
