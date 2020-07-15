@@ -126,7 +126,7 @@
     </div>
 
     <!-- availability -->
-    <div class="availability">
+    <div class="availability container mx-auto">
       <div class="availability__title">Availability</div>
       <div class="date-picker"></div>
     </div>
@@ -212,6 +212,7 @@ export default {
 
 .amenities {
   width: 540px;
+  @apply mb-8;
 
   &__title {
     @apply mb-6;
@@ -229,6 +230,22 @@ export default {
     span {
       @apply mr-4;
     }
+  }
+}
+
+.availability {
+  @apply mb-12;
+
+  &__title {
+    @apply mb-6;
+    @apply text-primary;
+    @apply font-bold text-xl;
+  }
+
+  .date-picker {
+    width: 600px;
+    height: 300px;
+    @apply bg-gray-400;
   }
 }
 </style>
