@@ -7,11 +7,7 @@
     <header class="header container mx-auto relative">
       <h1>HexHotel</h1>
       <div class="header__image"></div>
-      <div class="reserve-now">
-        <div class="check-input flex-auto">CHECK-in & CHECK-OUT</div>
-        <div class="check-input">ROOM</div>
-        <button class="btn btn-secondary">RESERVE NOW</button>
-      </div>
+      <Check class="reserve-now" />
     </header>
 
     <!-- Recommend -->
@@ -92,8 +88,6 @@ export default {
     position: absolute;
     top: 1rem;
     right: 45px;
-    width: 350px;
-    @apply bg-gray-400;
   }
 }
 
