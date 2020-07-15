@@ -24,6 +24,7 @@ export default {}
 <style lang="scss">
 .store-map {
   flex: 1 1 100%;
+  filter: grayscale(0.9);
 }
 .holder {
   display: none;
