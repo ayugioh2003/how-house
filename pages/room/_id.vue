@@ -26,10 +26,10 @@
     </header>
 
     <!-- description -->
-    <section class="description">
-      <div class="description-title">description</div>
-      <p>1 Guest・1 Bed (Small Double)・1 Private Bath・22 m²</p>
-      <p>
+    <section class="description container mx-auto">
+      <div class="description__title">Description</div>
+      <p class="mb-6">1 Guest・1 Bed (Small Double)・1 Private Bath・22 m²</p>
+      <p class="mb-6">
         Deluxe Single Room is only reserved for one guest. There is a bedroom
         with a small double size bed and a private bathroom. Everything you need
         prepared for you: sheets and blankets, towels, soap and shampoo,
@@ -83,6 +83,7 @@ export default {
 <style lang="scss" scoped>
 .header {
   position: relative;
+  @apply mb-12;
   &-head {
     @apply flex mb-4;
   }
@@ -131,6 +132,15 @@ export default {
       @apply mr-4;
       @apply bg-gray-400;
     }
+  }
+}
+
+.description {
+  @apply mb-12;
+  &__title {
+    @apply mb-6;
+    @apply text-primary;
+    @apply font-bold text-xl;
   }
 }
 </style>
