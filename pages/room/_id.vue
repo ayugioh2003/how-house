@@ -2,6 +2,7 @@
   <div class="room-page">
     <!-- NavBar -->
     <NavBar />
+    <link rel="stylesheet" href="" />
 
     <!-- header -->
     <header class="header container mx-auto">
@@ -26,38 +27,102 @@
     </header>
 
     <!-- description -->
-    <section class="description container mx-auto">
-      <div class="description__title">Description</div>
-      <p class="mb-6">1 Guest・1 Bed (Small Double)・1 Private Bath・22 m²</p>
-      <p class="mb-6">
-        Deluxe Single Room is only reserved for one guest. There is a bedroom
-        with a small double size bed and a private bathroom. Everything you need
-        prepared for you: sheets and blankets, towels, soap and shampoo,
-        hairdryer are provided. In the room there is AC and of course WiFi.
-      </p>
-      <p>
-        Check-in is from 3pm to 7pm <br />
-        Check-out is before 11am
-      </p>
-    </section>
+    <div class="container mx-auto">
+      <section class="description">
+        <div class="description__title">Description</div>
+        <p class="mb-6">1 Guest・1 Bed (Small Double)・1 Private Bath・22 m²</p>
+        <p class="mb-6">
+          Deluxe Single Room is only reserved for one guest. There is a bedroom
+          with a small double size bed and a private bathroom. Everything you
+          need prepared for you: sheets and blankets, towels, soap and shampoo,
+          hairdryer are provided. In the room there is AC and of course WiFi.
+        </p>
+        <p>
+          Check-in is from 3pm to 7pm <br />
+          Check-out is before 11am
+        </p>
+      </section>
+    </div>
 
     <!-- amenities 設施 -->
-    <div class="amenities">
-      <div class="amenities__title">Amenities</div>
-      <ul>
-        <li>Wi-Fi</li>
-        <li>Television</li>
-        <li>Great View</li>
-        <li>Breakfast</li>
-        <li>Air Conditioner</li>
-        <li>Smoke Free</li>
-        <li>Mini Bar</li>
-        <li>Refigerator</li>
-        <li>Child-Friendly</li>
-        <li>Room Service</li>
-        <li>Sofa</li>
-        <li>Pet-Friendly</li>
-      </ul>
+    <div class="container mx-auto">
+      <section class="amenities">
+        <div class="amenities__title">Amenities</div>
+        <ul>
+          <li>
+            <span class="material-icons">
+              wifi
+            </span>
+            Wi-Fi
+          </li>
+          <li>
+            <span class="material-icons">
+              personal_video
+            </span>
+            Television
+          </li>
+          <li>
+            <span class="material-icons">
+              landscape
+            </span>
+            Great View
+          </li>
+          <li>
+            <span class="material-icons">
+              restaurant
+            </span>
+            Breakfast
+          </li>
+          <li>
+            <span class="material-icons">
+              ac_unit
+            </span>
+            Air Conditioner
+          </li>
+          <li>
+            <span class="material-icons">
+              smoke_free
+            </span>
+            Smoke Free
+          </li>
+          <li>
+            <span class="material-icons">
+              local_bar
+            </span>
+            Mini Bar
+          </li>
+          <li>
+            <span class="material-icons">
+              kitchen
+            </span>
+            Refigerator
+          </li>
+          <li>
+            <span class="material-icons">
+              child_care
+            </span>
+            Child-Friendly
+          </li>
+          <li>
+            <span class="material-icons">
+              room_service
+            </span>
+            Room Service
+          </li>
+          <li>
+            <span class="material-icons">
+              weekend
+            </span>
+            Sofa
+          </li>
+          <li>
+            <span class="material-icons">
+              pets
+            </span>
+            Pet-Friendly
+          </li>
+        </ul>
+      </section>
     </div>
 
     <!-- availability -->
@@ -102,7 +167,7 @@ export default {
   }
   &__price-info {
     writing-mode: vertical-lr;
-    @apply self-start;
+    @apply self-start whitespace-no-wrap;
     @apply py-1;
     @apply text-white bg-primary-gray;
   }
@@ -136,11 +201,34 @@ export default {
 }
 
 .description {
+  width: 540px;
   @apply mb-12;
   &__title {
     @apply mb-6;
     @apply text-primary;
     @apply font-bold text-xl;
+  }
+}
+
+.amenities {
+  width: 540px;
+
+  &__title {
+    @apply mb-6;
+    @apply text-primary;
+    @apply font-bold text-xl;
+  }
+
+  ul {
+    @apply flex flex-wrap;
+  }
+
+  li {
+    @apply flex;
+    @apply w-1/3 mb-6;
+    span {
+      @apply mr-4;
+    }
   }
 }
 </style>
