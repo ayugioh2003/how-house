@@ -33,22 +33,36 @@
             <div class="reservation-infos__room-name">Deluxe single Room</div>
           </div>
           <div class="reservation-infos__info">
-            <div class="reservation-infos__info-icon">icon</div>
+            <div class="reservation-infos__info-icon">
+              <span class="material-icons">
+                date_range
+              </span>
+            </div>
             <div class="reservation-infos__info-title">CHECK-IN</div>
             <div class="reservation-infos__info-date">2019/08/07</div>
           </div>
           <div class="reservation-infos__info">
-            <div class="reservation-infos__info-icon">icon</div>
+            <div class="reservation-infos__info-icon">
+              <span class="material-icons">
+                date_range
+              </span>
+            </div>
             <div class="reservation-infos__info-title">CHECK-OUT</div>
             <div class="reservation-infos__info-date">2019/08/12</div>
           </div>
-          <div class="reservation-infos__info">
-            <div class="reservation-infos__info-price"></div>
-            <div class="reservation-infos__info-price"></div>
-            <div class="reservation-infos__info-price"></div>
-            <div class="reservation-infos__info-total">
-              <div class="reservation-infos__info-total-title">TOTAL</div>
-              <div class="reservation-infos__info-total-price">$10,998</div>
+          <div class="reservation-infos__summary">
+            <div
+              v-for="item in 3"
+              :key="item"
+              class="reservation-infos__summary-price"
+            >
+              <div>$1,899 × 2 night</div>
+              <div>$3,798</div>
+            </div>
+            <div class="reservation-infos__summary-divider"></div>
+            <div class="reservation-infos__summary-total">
+              <div class="reservation-infos__summary-total-title">TOTAL</div>
+              <div class="reservation-infos__summary-total-price">$10,998</div>
             </div>
           </div>
         </section>
@@ -66,7 +80,7 @@
   @apply flex -mx-gutter;
 
   &-form {
-    @apply w-1/2 px-gutter;
+    @apply w-1/2 mx-gutter;
 
     &__title {
       @apply mb-6;
@@ -112,7 +126,61 @@
   }
 
   &-infos {
-    @apply w-1/2 px-gutter;
+    @apply w-1/2 mx-gutter;
+
+    &__image {
+      height: 204px;
+      @apply bg-gray-400;
+      @apply border border-primary-gray;
+      @apply w-full;
+    }
+
+    &__room-name {
+      @apply text-primary;
+      @apply font-bold text-xl;
+    }
+
+    &__info {
+      @apply flex;
+      @apply py-6 px-8;
+      @apply border border-primary-gray;
+      @apply border-t-0;
+
+      &-icon {
+        line-height: 0px;
+        @apply mr-4;
+      }
+      &-title {
+        @apply mr-auto;
+      }
+    }
+
+    &__summary {
+      @apply py-6 px-8;
+      @apply border border-primary-gray;
+      @apply border-t-0;
+
+      &-price {
+        @apply flex justify-between;
+        @apply mb-2;
+      }
+
+      &-divider {
+        @apply h-px my-6;
+        @apply border-t border-primary-light;
+      }
+
+      &-total {
+        @apply flex justify-between;
+        &-title {
+          @apply text-primary;
+        }
+        &-price {
+          @apply text-primary;
+          @apply font-bold;
+        }
+      }
+    }
   }
 }
 </style>
