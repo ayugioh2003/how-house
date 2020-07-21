@@ -68,6 +68,7 @@
         </section>
       </main>
     </div>
+    <FooterReservation />
   </div>
 </template>
 

@@ -132,6 +132,8 @@
     </div>
 
     <HouseMap />
+
+    <Footer />
   </div>
 </template>
 

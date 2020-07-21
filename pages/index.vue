@@ -54,6 +54,7 @@
       </div>
     </section>
     <HouseMap />
+    <Footer />
   </div>
 </template>
 
