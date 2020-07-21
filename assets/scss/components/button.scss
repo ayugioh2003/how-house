@@ -1,10 +1,19 @@
 .btn {
   width: 350px;
   height: 72px;
+  @apply flex justify-center items-center;
+  @apply border border-primary-gray;
   @apply transition duration-100;
+
+  &:hover {
+    @apply bg-primary-light;
+    @apply cursor-pointer;
+  }
+
 
   &-secondary {
     @apply bg-secondary text-white;
+    @apply border border-secondary;
     &:hover {
       @apply bg-secondary-dark;
     }
