@@ -1,7 +1,7 @@
 <template>
-  <div class="logo-wrap">
+  <nuxt-link to="/" class="logo-wrap">
     <div class="logo">HH</div>
-  </div>
+  </nuxt-link>
 </template>
 
 <style lang="scss">
