@@ -59,11 +59,28 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import HouseMap from '@/components/HouseMap.vue'
+
 export default {
   components: {
     HouseMap,
   },
+  async fetch({ store, error }) {
+    try {
+      const res = await store.dispatch('rooms/fetchRooms')
+      // eslint-disable-next-line no-console
+      console.log('res', res)
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch rooms at this time, Please try again later.',
+      })
+    }
+  },
+  computed: mapState({
+    rooms: (state) => state.rooms.rooms,
+  }),
 }
 </script>
 
