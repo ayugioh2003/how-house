@@ -1,4 +1,4 @@
-import i18n from './nuxt-i18n.config'
+// import i18n from './nuxt-i18n.config'
 
 export default {
   /*
@@ -72,7 +72,7 @@ export default {
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
     // Doc: https://nuxt-community.github.io/nuxt-i18n/basic-usage.html
-    'nuxt-i18n',
+    // 'nuxt-i18n',
   ],
   /*
    ** Axios module configuration
@@ -83,7 +83,7 @@ export default {
    ** nuxt-i18n module configuration
    ** See https://nuxt-community.github.io/nuxt-i18n/basic-usage.html
    */
-  i18n,
+  // i18n,
   /*
    ** tailwindcss module configuration
    ** See https://github.com/nuxt-community/tailwindcss-module

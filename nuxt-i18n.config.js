@@ -11,22 +11,20 @@ export default {
   langDir: 'assets/locales/',
   vueI18n: {
     fallbackLocale: 'en',
-    formatFallbackMessages: true
+    formatFallbackMessages: true,
   },
   locales: [
     {
       code: 'en',
       iso: 'en-US',
       name: 'English',
-      file: 'en.json'
+      file: 'en.json',
     },
     {
       code: 'tw',
       iso: 'zh-TW',
       name: '繁體中文',
-      file: 'zh-TW.json'
+      file: 'zh-TW.json',
     },
   ],
-  
-
 }
