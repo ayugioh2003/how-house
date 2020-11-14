@@ -14,9 +14,9 @@ export default {
   getRooms() {
     return apiClient.get('/rooms')
   },
-  // getRoom(id) {
-  //   return apiClient.get('/room/' + id)
-  // },
+  getRoom(id) {
+    return apiClient.get('/room/' + id)
+  },
   // bookRoom(id, data) {
   //   // name, tel, date[]
   //   return apiClient.post('/room/' + id, data)

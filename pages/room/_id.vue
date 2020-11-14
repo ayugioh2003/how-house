@@ -7,22 +7,34 @@
     <!-- header -->
     <header class="header container mx-auto">
       <div class="header-head">
-        <h1 class="header__title">Deluxe single Room</h1>
-        <div class="header__image"></div>
+        <h1 class="header__title">{{ room.room[0].name }}</h1>
+        <div
+          class="header__image"
+          :style="{
+            backgroundImage: `url(${room.room[0].imageUrl[0]})`,
+          }"
+        ></div>
         <div class="header__price-info">WEEKDAY PRICE</div>
         <div class="header__room-info">
           <div class="header__price-day">
-            <span class="price">$1,899 NTD</span>
+            <span class="price">${{ room.room[0].normalDayPrice }} NTD</span>
             / night
           </div>
           <div class="header__price-holiday">
-            holiday price - $2,000 NTD / night
+            holiday price - ${{ room.room[0].holidayPrice }} NTD / night
           </div>
           <Check class="reserve-now" />
         </div>
       </div>
       <div class="header-pics">
-        <div v-for="item in 3" :key="item" class="header-pics__pic"></div>
+        <div
+          v-for="item in room.room[0].imageUrl"
+          :key="item"
+          class="header-pics__pic"
+          :style="{
+            backgroundImage: `url(${item})`,
+          }"
+        ></div>
       </div>
     </header>
 
@@ -30,16 +42,33 @@
     <div class="container mx-auto">
       <section class="description">
         <div class="description__title">Description</div>
-        <p class="mb-6">1 Guest・1 Bed (Small Double)・1 Private Bath・22 m²</p>
         <p class="mb-6">
-          Deluxe Single Room is only reserved for one guest. There is a bedroom
-          with a small double size bed and a private bathroom. Everything you
-          need prepared for you: sheets and blankets, towels, soap and shampoo,
-          hairdryer are provided. In the room there is AC and of course WiFi.
+          <span
+            >{{
+              room.room[0].descriptionShort.GuestMax ===
+              room.room[0].descriptionShort.GuestMin
+                ? room.room[0].descriptionShort.GuestMin
+                : `${room.room[0].descriptionShort.GuestMin}-${room.room[0].descriptionShort.GuestMax}`
+            }}
+            Guest・</span
+          >
+          <span>
+            {{ room.room[0].descriptionShort.Bed.length }} Bed ({{
+              room.room[0].descriptionShort.Bed[0]
+            }})・</span
+          >
+          <span>
+            {{ room.room[0].descriptionShort['Private-Bath'] }} Private Bath・
+          </span>
+          <span>{{ room.room[0].descriptionShort.Footage }} m²</span>
+        </p>
+        <p class="mb-6">
+          {{ room.room[0].description }}
         </p>
         <p>
-          Check-in is from 3pm to 7pm <br />
-          Check-out is before 11am
+          Check-in is from {{ room.room[0].checkInAndOut.checkInEarly }} to
+          {{ room.room[0].checkInAndOut.checkInLate }} <br />
+          Check-out is before {{ room.room[0].checkInAndOut.checkOut }}
         </p>
       </section>
     </div>
@@ -47,75 +76,87 @@
     <!-- amenities 設施 -->
     <div class="container mx-auto">
       <section class="amenities">
-        <div class="amenities__title">Amenities</div>
+        <div class="amenities__title op">Amenities</div>
         <ul>
-          <li>
+          <li :class="{ 'opacity-25': !room.room[0].amenities['Wi-Fi'] }">
             <span class="material-icons">
               wifi
             </span>
             Wi-Fi
           </li>
-          <li>
+          <li :class="{ 'opacity-25': !room.room[0].amenities['Television'] }">
             <span class="material-icons">
               personal_video
             </span>
             Television
           </li>
-          <li>
+          <li :class="{ 'opacity-25': !room.room[0].amenities['Great-View'] }">
             <span class="material-icons">
               landscape
             </span>
             Great View
           </li>
-          <li>
+          <li :class="{ 'opacity-25': !room.room[0].amenities['Breakfast'] }">
             <span class="material-icons">
               restaurant
             </span>
             Breakfast
           </li>
-          <li>
+          <li
+            :class="{
+              'opacity-25': !room.room[0].amenities['Air-Conditioner'],
+            }"
+          >
             <span class="material-icons">
               ac_unit
             </span>
             Air Conditioner
           </li>
-          <li>
+          <li :class="{ 'opacity-25': !room.room[0].amenities['Smoke-Free'] }">
             <span class="material-icons">
               smoke_free
             </span>
             Smoke Free
           </li>
-          <li>
+          <li :class="{ 'opacity-25': !room.room[0].amenities['Mini-Bar'] }">
             <span class="material-icons">
               local_bar
             </span>
             Mini Bar
           </li>
-          <li>
+          <li
+            :class="{ 'opacity-25': !room.room[0].amenities['Refrigerator'] }"
+          >
             <span class="material-icons">
               kitchen
             </span>
             Refigerator
           </li>
-          <li>
+          <li
+            :class="{ 'opacity-25': !room.room[0].amenities['Child-Friendly'] }"
+          >
             <span class="material-icons">
               child_care
             </span>
             Child-Friendly
           </li>
-          <li>
+          <li
+            :class="{ 'opacity-25': !room.room[0].amenities['Room-Service'] }"
+          >
             <span class="material-icons">
               room_service
             </span>
             Room Service
           </li>
-          <li>
+          <li :class="{ 'opacity-25': !room.room[0].amenities['Sofa'] }">
             <span class="material-icons">
               weekend
             </span>
             Sofa
           </li>
-          <li>
+          <li
+            :class="{ 'opacity-25': !room.room[0].amenities['Pet-Friendly'] }"
+          >
             <span class="material-icons">
               pets
             </span>
@@ -138,11 +179,30 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
+  async fetch({ store, route, error }) {
+    try {
+      const res = await store.dispatch('rooms/fetchRoom', route.params.id)
+      // eslint-disable-next-line no-console
+      console.log('res', res)
+    } catch (error) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch room at this time, Please try again later.',
+      })
+      // eslint-disable-next-line no-console
+      await console.log(error)
+    }
+  },
   computed: {
     id() {
       return this.$route.params.id
     },
+    ...mapState({
+      room: (state) => state.rooms.room,
+    }),
   },
 }
 </script>
@@ -196,6 +256,8 @@ export default {
     &__pic {
       width: 160px;
       height: 94px;
+      @apply bg-center;
+      @apply bg-cover;
       @apply mr-4;
       @apply bg-gray-400;
     }

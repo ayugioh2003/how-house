@@ -9,9 +9,9 @@ export const mutations = {
   SET_ROOMS(state, rooms) {
     state.rooms = rooms
   },
-  // SET_ROOM(state, room) {
-  //   state.room = room
-  // },
+  SET_ROOM(state, room) {
+    state.room = room
+  },
 }
 
 export const actions = {
@@ -23,10 +23,10 @@ export const actions = {
       }
     })
   },
-  // fetchRoom({ commit }, id) {
-  //   return RoomService.getRoom(id).then((res) => {
-  //     commit('SET_ROOM', res.data)
-  //     return res.data
-  //   })
-  // },
+  fetchRoom({ commit }, id) {
+    return RoomService.getRoom(id).then((res) => {
+      commit('SET_ROOM', res.data)
+      return res.data
+    })
+  },
 }

@@ -23,6 +23,7 @@
           v-for="room in [rooms[1], rooms[3], rooms[5]]"
           :key="room.id"
           class="recommend-room"
+          @click="onRoomClick(room.id)"
         >
           <div
             class="recommend-room__image"
@@ -66,6 +67,7 @@
             v-for="room in rooms.slice(0 + index * 2, 2 + index * 2)"
             :key="room.id"
             class="service-room"
+            @click="onRoomClick(room.id)"
           >
             <div
               class="service-room__image"
@@ -127,6 +129,24 @@ export default {
   computed: mapState({
     rooms: (state) => state.rooms.rooms,
   }),
+  methods: {
+    onRoomClick(roomId) {
+      // eslint-disable-next-line no-console
+      console.log(roomId)
+
+      // try {
+      //   const res = await this.$store.dispatch('rooms/fetchRoom', roomId)
+      //   // eslint-disable-next-line no-console
+      //   console.log('res', res)
+      // } catch (error) {
+      //   error({
+      //     statusCode: 503,
+      //     message: 'Unable to fetch room at this time, Please try again later.',
+      //   })
+      // }
+      this.$router.push({ name: 'room-id', params: { id: roomId } })
+    },
+  },
 }
 </script>
 
@@ -168,6 +188,7 @@ export default {
     @apply flex -mx-gutter;
   }
   &-room {
+    cursor: pointer;
     @apply w-1/3 mx-gutter;
     @apply text-right;
     &__image {
@@ -200,6 +221,7 @@ export default {
     }
   }
   &-room {
+    cursor: pointer;
     @apply px-gutter w-1/3;
     @apply text-right;
     @apply mb-12;
