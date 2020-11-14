@@ -26,8 +26,8 @@ export default {
         content: process.env.npm_package_description || '',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
         type: 'text/css',
@@ -38,8 +38,7 @@ export default {
   /*
    ** Global CSS
    ** See: https://zh.nuxtjs.org/api/configuration-css/
-   */
-  css: ['@/assets/scss/main.scss'],
+   */ css: ['@/assets/scss/main.scss'],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
@@ -84,7 +83,7 @@ export default {
    ** nuxt-i18n module configuration
    ** See https://nuxt-community.github.io/nuxt-i18n/basic-usage.html
    */
-  i18n: i18n,
+  i18n,
   /*
    ** tailwindcss module configuration
    ** See https://github.com/nuxt-community/tailwindcss-module

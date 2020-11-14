@@ -5,7 +5,7 @@
 
     <!-- Header -->
     <header class="header container mx-auto relative">
-      <h1>HexHotel</h1>
+      <h1>HowHouse</h1>
       <div class="header__image"></div>
       <Check class="reserve-now" />
     </header>
@@ -19,10 +19,21 @@
         </div>
       </div>
       <div class="recommend-rooms">
-        <div v-for="room in 3" :key="room" class="recommend-room">
-          <div class="recommend-room__image"></div>
-          <div class="recommend-room__title">Twin Room</div>
-          <div class="recommend-room__price">$3,350 NTD / night</div>
+        <div
+          v-for="room in [rooms[1], rooms[3], rooms[5]]"
+          :key="room.id"
+          class="recommend-room"
+        >
+          <div
+            class="recommend-room__image"
+            :style="{
+              backgroundImage: `url(${room.imageUrl})`,
+            }"
+          ></div>
+          <div class="recommend-room__title">{{ room.name }}</div>
+          <div class="recommend-room__price">
+            ${{ room.normalDayPrice }} NTD / night
+          </div>
         </div>
       </div>
     </section>
@@ -38,17 +49,34 @@
         </div>
       </div>
       <div class="service-body container mx-auto">
-        <div v-for="category in 3" :key="category" class="service-category">
+        <div
+          v-for="(category, index) in roomType"
+          :key="category.title"
+          class="service-category"
+        >
           <div class="service-category-head">
-            <div class="service-category-head__title title">One person</div>
+            <div class="service-category-head__title title">
+              {{ category.title }}
+            </div>
             <div class="service--category-head__subtitle">
-              Enjoy the on and only service
+              {{ category.description }}
             </div>
           </div>
-          <div v-for="room in 2" :key="room" class="service-room">
-            <div class="service-room__image"></div>
-            <div class="service-room__title">Single Room</div>
-            <div class="service-room__price">$1,380 NTD / night</div>
+          <div
+            v-for="room in rooms.slice(0 + index * 2, 2 + index * 2)"
+            :key="room.id"
+            class="service-room"
+          >
+            <div
+              class="service-room__image"
+              :style="{
+                backgroundImage: `url(${room.imageUrl})`,
+              }"
+            ></div>
+            <div class="service-room__title">{{ room.name }}</div>
+            <div class="service-room__price">
+              ${{ room.normalDayPrice }} NTD / night
+            </div>
           </div>
         </div>
       </div>
@@ -76,6 +104,24 @@ export default {
         statusCode: 503,
         message: 'Unable to fetch rooms at this time, Please try again later.',
       })
+    }
+  },
+  data() {
+    return {
+      roomType: [
+        {
+          title: 'One person',
+          description: 'Enjoy the one and only service',
+        },
+        {
+          title: 'Two person',
+          description: 'The perfect choice for both of you',
+        },
+        {
+          title: 'Family',
+          description: 'Wanna a big room? there you are',
+        },
+      ],
     }
   },
   computed: mapState({
@@ -110,6 +156,8 @@ export default {
 }
 
 .recommend {
+  @apply mb-12;
+
   &-head {
     @apply mb-6;
   }
