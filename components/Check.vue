@@ -4,17 +4,22 @@
     <CheckInOut
       class="flex-auto border-gray-400 border-2 border-b-0"
     ></CheckInOut>
-    <div class="check-input border-gray-400 border-2">ROOM</div>
+    <CheckRoom
+      class="flex-auto border-gray-400 border-2 border-b-0"
+    ></CheckRoom>
+    <!-- <div class="check-input border-gray-400 border-2">ROOM</div> -->
     <button class="btn btn-secondary">RESERVE NOW</button>
   </div>
 </template>
 
 <script>
 import CheckInOut from '@/components/CheckInOut.vue'
+import CheckRoom from '@/components/CheckRoom.vue'
 
 export default {
   components: {
     CheckInOut,
+    CheckRoom,
   },
 }
 </script>

@@ -4,9 +4,10 @@
 
     <CheckInOut class="flex-auto"></CheckInOut>
 
-    <div class="check-input flex-auto flex items-center px-8">
+    <CheckRoom class="flex-auto"></CheckRoom>
+    <!-- <div class="check-input flex-auto flex items-center px-8">
       <i class="material-icons color-black mr-4">hotel</i>
-    </div>
+    </div> -->
 
     <button class="btn btn-secondary">RESERVE NOW</button>
   </nav>
@@ -15,10 +16,12 @@
 <script>
 // import { mapFields } from 'vuex-map-fields'
 import CheckInOut from '@/components/CheckInOut.vue'
+import CheckRoom from '@/components/CheckRoom.vue'
 
 export default {
   components: {
     CheckInOut,
+    CheckRoom,
   },
   data() {
     return {}

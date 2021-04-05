@@ -3,7 +3,8 @@ import RoomService from '@/services/RoomService.js'
 export const state = () => ({
   rooms: [],
   room: {},
-  checkTimeRange: null,
+  checkTimeRange: [],
+  checkRoom: {},
 })
 
 export const mutations = {
@@ -12,6 +13,12 @@ export const mutations = {
   },
   SET_ROOM(state, room) {
     state.room = room
+  },
+  checkTimeRange(state, checkTimeRange) {
+    state.checkTimeRange = checkTimeRange
+  },
+  checkRoom(state, checkRoom) {
+    state.checkRoom = checkRoom
   },
 }
 
