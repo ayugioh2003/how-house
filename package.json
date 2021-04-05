@@ -18,7 +18,8 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "nuxt": "^2.13.0",
     "nuxt-i18n": "^6.13.1",
-    "vue2-datepicker": "^3.8.2"
+    "vue2-datepicker": "^3.8.2",
+    "vuex-map-fields": "^1.4.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.0.0",

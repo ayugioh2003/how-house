@@ -3,6 +3,7 @@ import RoomService from '@/services/RoomService.js'
 export const state = () => ({
   rooms: [],
   room: {},
+  checkTimeRange: null,
 })
 
 export const mutations = {
