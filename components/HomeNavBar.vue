@@ -9,7 +9,8 @@
       <i class="material-icons color-black mr-4">hotel</i>
     </div> -->
 
-    <button class="btn btn-secondary">RESERVE NOW</button>
+    <ReserveButton></ReserveButton>
+    <!-- <button class="btn btn-secondary">RESERVE NOW</button> -->
   </nav>
 </template>
 

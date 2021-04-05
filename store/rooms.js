@@ -14,10 +14,10 @@ export const mutations = {
   SET_ROOM(state, room) {
     state.room = room
   },
-  checkTimeRange(state, checkTimeRange) {
+  SET_CHECK_TIME_RANGE(state, checkTimeRange) {
     state.checkTimeRange = checkTimeRange
   },
-  checkRoom(state, checkRoom) {
+  SET_CHECK_ROOM(state, checkRoom) {
     state.checkRoom = checkRoom
   },
 }

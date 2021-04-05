@@ -23,7 +23,7 @@
           <div class="header__price-holiday">
             holiday price - ${{ room.room[0].holidayPrice }} NTD / night
           </div>
-          <Check class="reserve-now" />
+          <Check :is-room-disabled="true" class="reserve-now" />
         </div>
       </div>
       <div class="header-pics">
@@ -212,7 +212,12 @@ export default {
     },
     ...mapState({
       room: (state) => state.rooms.room,
+      rooms: (state) => state.rooms.rooms,
     }),
+  },
+  mounted() {
+    const room = this.rooms.find((item) => item.id === this.id)
+    this.$store.commit('rooms/SET_CHECK_ROOM', room)
   },
 }
 </script>

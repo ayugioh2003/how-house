@@ -2,16 +2,16 @@
   <nav class="navbar flex mb-10">
     <Logo />
     <!-- <div class="check-input flex-auto">ROOM STYLE</div> -->
-    <CheckRoom class="ml-auto"></CheckRoom>
+    <RoomStyle class="ml-auto"></RoomStyle>
   </nav>
 </template>
 
 <script>
-import CheckRoom from '@/components/CheckRoom.vue'
+import RoomStyle from '@/components/RoomStyle.vue'
 
 export default {
   components: {
-    CheckRoom,
+    RoomStyle,
   },
 }
 </script>

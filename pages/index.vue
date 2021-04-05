@@ -90,10 +90,12 @@
 
 <script>
 import { mapState } from 'vuex'
+import Check from '@/components/Check.vue'
 import HouseMap from '@/components/HouseMap.vue'
 
 export default {
   components: {
+    Check,
     HouseMap,
   },
   async fetch({ store, error }) {
@@ -131,19 +133,6 @@ export default {
   }),
   methods: {
     onRoomClick(roomId) {
-      // eslint-disable-next-line no-console
-      console.log(roomId)
-
-      // try {
-      //   const res = await this.$store.dispatch('rooms/fetchRoom', roomId)
-      //   // eslint-disable-next-line no-console
-      //   console.log('res', res)
-      // } catch (error) {
-      //   error({
-      //     statusCode: 503,
-      //     message: 'Unable to fetch room at this time, Please try again later.',
-      //   })
-      // }
       this.$router.push({ name: 'room-id', params: { id: roomId } })
     },
   },

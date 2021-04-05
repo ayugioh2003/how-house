@@ -1,15 +1,13 @@
 <template>
   <div
-    class="check-input flex-auto flex items-center px-8 relative"
-    :class="{ 'cursor-pointer': !disabled }"
-    @click="!disabled ? (isModalOpen = !isModalOpen) : null"
+    class="check-input flex-auto flex items-center px-8 cursor-pointer relative"
+    @click="isModalOpen = !isModalOpen"
   >
     <i class="material-icons color-black mr-4" style="padding-right: 10px;"
       >hotel</i
     >
     <span>
-      <span v-if="checkRoom.name == undefined" class="text-gray-500">ROOM</span>
-      <span v-else>{{ checkRoom.name }}</span>
+      <span class="text-gray-500">ROOM STYLE</span>
     </span>
 
     <div v-if="isModalOpen" class="modal">
@@ -17,7 +15,7 @@
         v-for="room in rooms"
         :key="room.id"
         class="option"
-        @click="checkRoomHandler(room)"
+        @click="clickHandler(room)"
       >
         {{ room.name }}
       </div>
@@ -28,26 +26,22 @@
 <script>
 import { mapFields } from 'vuex-map-fields'
 export default {
-  props: {
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-  },
   data() {
     return {
       isModalOpen: false,
+      selectedRoom: {},
     }
   },
   computed: {
     ...mapFields({
       rooms: 'rooms.rooms',
-      checkRoom: 'rooms.checkRoom',
+      // checkRoom: 'rooms.checkRoom',
     }),
   },
   methods: {
-    checkRoomHandler(checkRoom) {
-      this.$store.commit('rooms/SET_CHECK_ROOM', checkRoom)
+    clickHandler(selectedRoom) {
+      this.$router.push(`/room/${selectedRoom.id}`)
+      // this.$store.commit('rooms/checkRoom', checkRoom)
       // console.log('checkRoom', checkRoom)
     },
   },
