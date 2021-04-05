@@ -72,6 +72,37 @@
   </div>
 </template>
 
+<script>
+import { mapFields } from 'vuex-map-fields'
+
+export default {
+  data() {
+    return {
+      form: {
+        name: '',
+        phone: '',
+      },
+    }
+  },
+  computed: {
+    ...mapFields({
+      checkTimeRange: 'rooms.checkTimeRange',
+      checkRoom: 'rooms.checkRoom',
+    }),
+  },
+  mounted() {
+    console.log('checkTimeRange', this.checkTimeRange)
+    console.log('checkRoom', this.checkRoom)
+    if (
+      !this.checkTimeRange.length === 0 ||
+      Object.keys(this.checkRoom).length === 0
+    ) {
+      this.$router.push('/')
+    }
+  },
+}
+</script>
+
 <style lang="scss" scoped>
 .reservation-wrap {
   width: 730px;
