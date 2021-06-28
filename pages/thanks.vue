@@ -72,13 +72,6 @@ export default {
     bookRoomResult() {
       return this.$store.state.rooms.bookRoomResult
     },
-    // ...mapFields({
-    //   bookRoomResult: 'rooms/bookRoomResult',
-    // }),
-  },
-  mounted() {
-    // console.log('result', this.$store.state.rooms.bookRoomResult)
-    // console.log('bookRoomResult', this.bookRoomResult)
   },
 }
 </script>

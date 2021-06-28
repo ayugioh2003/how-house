@@ -8,6 +8,8 @@ export const state = () => ({
   bookRoomResult: {},
 })
 
+export const getters = {}
+
 export const mutations = {
   SET_ROOMS(state, rooms) {
     state.rooms = rooms

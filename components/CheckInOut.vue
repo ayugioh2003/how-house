@@ -11,6 +11,7 @@
         format="YYYY-MM-DD"
         value-type="format"
         range
+        :disabled-date="disabledDate"
         :open.sync="isDateModelOpen"
       >
         <template v-slot:icon-calendar>
@@ -26,7 +27,14 @@
 import { mapFields } from 'vuex-map-fields'
 
 export default {
-  props: {},
+  props: {
+    disabledDate: {
+      type: Function,
+      default() {
+        return false
+      },
+    },
+  },
   data() {
     return {
       isDateModelOpen: false,

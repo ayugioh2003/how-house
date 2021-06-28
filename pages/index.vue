@@ -7,7 +7,7 @@
     <header class="header container mx-auto relative">
       <h1>HowHouse</h1>
       <div class="header__image"></div>
-      <Check class="reserve-now" />
+      <Check class="reserve-now" :disabled-date="isDisabledDate" />
     </header>
 
     <!-- Recommend -->
@@ -100,9 +100,7 @@ export default {
   },
   async fetch({ store, error }) {
     try {
-      const res = await store.dispatch('rooms/fetchRooms')
-      // eslint-disable-next-line no-console
-      console.log('res', res)
+      await store.dispatch('rooms/fetchRooms')
     } catch (e) {
       error({
         statusCode: 503,
@@ -130,10 +128,37 @@ export default {
   },
   computed: mapState({
     rooms: (state) => state.rooms.rooms,
+    room: (state) => state.rooms.room,
   }),
   methods: {
     onRoomClick(roomId) {
       this.$router.push({ name: 'room-id', params: { id: roomId } })
+    },
+    isDisabledDate(checkDate) {
+      const isDateBooked = this.room.booking.some(
+        (bookedObj) =>
+          this.$moment(bookedObj.date).format('YYYY-MM-DD') ===
+          this.$moment(checkDate).format('YYYY-MM-DD')
+      )
+      const isBeforeToday = this.$moment(checkDate).isSameOrBefore(
+        this.$moment()
+      )
+      const isAfterNinetyDays = this.$moment(checkDate).isAfter(
+        this.$moment().add(90, 'days')
+      )
+
+      const result = isDateBooked || isBeforeToday || isAfterNinetyDays
+      return result
+
+      // const isBeforeToday = this.$moment(checkDate).isSameOrBefore(
+      //   this.$moment()
+      // )
+      // const isAfterNinetyDays = this.$moment(checkDate).isAfter(
+      //   this.$moment().add(90, 'days')
+      // )
+
+      // const result = isBeforeToday || isAfterNinetyDays
+      // return result
     },
   },
 }

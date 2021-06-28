@@ -48,7 +48,7 @@ export default {
   methods: {
     checkRoomHandler(checkRoom) {
       this.$store.commit('rooms/SET_CHECK_ROOM', checkRoom)
-      // console.log('checkRoom', checkRoom)
+      this.$store.dispatch('rooms/fetchRoom', this.checkRoom.id)
     },
   },
 }

@@ -149,7 +149,7 @@ export default {
         }
         return template
       })
-      console.log('prices', prices)
+      // console.log('prices', prices)
 
       return prices
     },
@@ -179,8 +179,8 @@ export default {
     },
   },
   async mounted() {
-    console.log('checkTimeRange', this.checkTimeRange)
-    console.log('checkRoom', this.checkRoom)
+    // console.log('checkTimeRange', this.checkTimeRange)
+    // console.log('checkRoom', this.checkRoom)
 
     // If timeRange or roomType empty, then return back to index
     if (
@@ -204,7 +204,6 @@ export default {
       })
       .then(res => {
         this.$store.commit('rooms/SET_BOOK_ROOM_RESULT', res.data)
-        console.log('result', this.$store.state.rooms.bookRoomResult)
         this.$router.push('/thanks')
       })
       .catch(e => {

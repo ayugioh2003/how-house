@@ -3,6 +3,7 @@
     <!-- <div class="check-input flex-auto">CHECK-in & CHECK-OUT</div> -->
     <CheckInOut
       :disabled="isDateDisabled"
+      :disabled-date="disabledDate"
       class="flex-auto border-gray-400 border-2 border-b-0"
     ></CheckInOut>
     <CheckRoom
@@ -32,6 +33,12 @@ export default {
     isRoomDisabled: {
       type: Boolean,
       default: false,
+    },
+    disabledDate: {
+      type: Function,
+      default() {
+        return false
+      },
     },
   },
 }
