@@ -54,7 +54,7 @@
 
       <!-- buttons -->
       <div class="buttons">
-        <div class="btn">EDIT RESERVATION</div>
+        <div class="btn" @click="deleteBookings">DELETE ALL RESERVATION</div>
         <div class="btn btn-secondary" @click="$router.push('/')">
           HOMEPAGE
         </div>
@@ -71,6 +71,18 @@ export default {
   computed: {
     bookRoomResult() {
       return this.$store.state.rooms.bookRoomResult
+    },
+  },
+  methods: {
+    async deleteBookings() {
+      await this.$store.dispatch('rooms/deleteBookings').then((res) => {
+        console.log('delete res', res)
+        if (res.data.success) {
+          alert('刪除成功！')
+          this.$router.push('/')
+        }
+      })
+      // console.log('delete res', res)
     },
   },
 }

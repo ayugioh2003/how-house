@@ -21,7 +21,7 @@ export default {
     // name, tel, date[]
     return apiClient.post('/room/' + id, data)
   },
-  // deleteBookings() {
-  //   return apiClient.delete('/rooms')
-  // },
+  deleteBookings() {
+    return apiClient.delete('/rooms')
+  },
 }

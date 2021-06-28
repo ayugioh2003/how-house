@@ -50,4 +50,7 @@ export const actions = {
       date: payload.date,
     })
   },
+  deleteBookings(context) {
+    return RoomService.deleteBookings()
+  },
 }

@@ -173,7 +173,14 @@
     <!-- availability -->
     <div class="availability container mx-auto">
       <div class="availability__title">Availability</div>
-      <div class="date-picker"></div>
+      <!-- <div class="date-picker"></div> -->
+      <date-picker
+        :open="true"
+        :disabled-date="isDisabledDate"
+        :inline="true"
+        range
+      >
+      </date-picker>
     </div>
 
     <HouseMap />
@@ -184,6 +191,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import { mapFields } from 'vuex-map-fields'
 
 export default {
   async fetch({ store, route, error }) {
@@ -213,7 +221,10 @@ export default {
     ...mapState({
       room: (state) => state.rooms.room,
       rooms: (state) => state.rooms.rooms,
-      checkTimeRange: (state) => state.rooms.checkTimeRange,
+      // checkTimeRange: (state) => state.rooms.checkTimeRange,
+    }),
+    ...mapFields({
+      checkTimeRange: 'rooms.checkTimeRange',
     }),
     checkInDate() {
       return this.checkTimeRange[0]
@@ -242,17 +253,6 @@ export default {
       return this.room.booking.map((b) =>
         this.$moment(b.date).format('YYYY-MM-DD')
       )
-    },
-  },
-  watch: {
-    selectDateRangeArray(arr) {
-      const isSomeDisabledDateSelected = arr.some((selectedDate) =>
-        this.isDisabledDate(selectedDate)
-      )
-      if (isSomeDisabledDateSelected) {
-        alert('有部份日期無法選擇。請重新挑選')
-        this.$store.commit('SET_CHECK_TIME_RANGE', [])
-      }
     },
   },
   mounted() {
