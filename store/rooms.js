@@ -37,4 +37,11 @@ export const actions = {
       return res.data
     })
   },
+  bookRoom(context, { id, ...payload }) {
+    return RoomService.bookRoom(id, {
+      name: payload.name,
+      tel: payload.tel || payload.phone,
+      date: payload.date,
+    })
+  },
 }

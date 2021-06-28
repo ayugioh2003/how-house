@@ -17,10 +17,10 @@ export default {
   getRoom(id) {
     return apiClient.get('/room/' + id)
   },
-  // bookRoom(id, data) {
-  //   // name, tel, date[]
-  //   return apiClient.post('/room/' + id, data)
-  // },
+  bookRoom(id, data) {
+    // name, tel, date[]
+    return apiClient.post('/room/' + id, data)
+  },
   // deleteBookings() {
   //   return apiClient.delete('/rooms')
   // },

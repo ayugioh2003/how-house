@@ -6,7 +6,7 @@
         <section class="reservation-form">
           <div class="reservation-form__title">Reservation Information</div>
           <div class="input-group">
-            <input id="name" type="text" />
+            <input id="name" v-model="form.name" type="text" />
             <label for="name">
               <span class="material-icons">
                 person
@@ -15,7 +15,7 @@
             </label>
           </div>
           <div class="input-group">
-            <input id="phone" type="text" />
+            <input id="phone" v-model="form.phone" type="text" />
             <label for="phone" class="label">
               <span class="material-icons">
                 phone_android
@@ -23,7 +23,7 @@
               PHONE
             </label>
           </div>
-          <button class="btn btn-secondary">
+          <button class="btn btn-secondary" @click="bookHandler">
             RESERVE NOW
           </button>
         </section>
@@ -39,7 +39,7 @@
               </span>
             </div>
             <div class="reservation-infos__info-title">CHECK-IN</div>
-            <div class="reservation-infos__info-date">2019/08/07</div>
+            <div class="reservation-infos__info-date">{{ checkInDate }}</div>
           </div>
           <div class="reservation-infos__info">
             <div class="reservation-infos__info-icon">
@@ -48,21 +48,23 @@
               </span>
             </div>
             <div class="reservation-infos__info-title">CHECK-OUT</div>
-            <div class="reservation-infos__info-date">2019/08/12</div>
+            <div class="reservation-infos__info-date">{{ checkOutDate }}</div>
           </div>
           <div class="reservation-infos__summary">
             <div
-              v-for="item in 3"
-              :key="item"
+              v-for="(checkItem, index) in checkItems"
+              :key="index"
               class="reservation-infos__summary-price"
             >
-              <div>$1,899 × 2 night</div>
-              <div>$3,798</div>
+              <div>{{ `$ ${checkItem.price} × ${checkItem.days} night` }}</div>
+              <div>{{ `$${checkItem.itemPrice}` }}</div>
             </div>
             <div class="reservation-infos__summary-divider"></div>
             <div class="reservation-infos__summary-total">
               <div class="reservation-infos__summary-total-title">TOTAL</div>
-              <div class="reservation-infos__summary-total-price">$10,998</div>
+              <div class="reservation-infos__summary-total-price">
+                {{ `$${totalPrice}` }}
+              </div>
             </div>
           </div>
         </section>
@@ -73,6 +75,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import { mapFields } from 'vuex-map-fields'
 
 export default {
@@ -81,7 +84,9 @@ export default {
       form: {
         name: '',
         phone: '',
+        date: this.selectDateRangeArray || []
       },
+      calendars: [],
     }
   },
   computed: {
@@ -89,17 +94,122 @@ export default {
       checkTimeRange: 'rooms.checkTimeRange',
       checkRoom: 'rooms.checkRoom',
     }),
+    checkInDate() {
+      return this.checkTimeRange[0]
+    },
+    checkOutDate() {
+      if (this.checkTimeRange.length > 1) {
+        return this.checkTimeRange[this.checkTimeRange.length - 1]
+      } else {
+        return this.checkTimeRange[0]
+      }
+    },
+    selectDateRangeArray() {
+      const selectDateRange = this.$moment.range(
+        this.checkInDate,
+        this.checkOutDate
+      )
+      const selectDateRangeArray = Array.from(
+        selectDateRange.by('day')
+      ).map((m) => m.format('YYYY/MM/DD'))
+      return selectDateRangeArray
+    },
+    // [{ 日期, 價錢 }]
+    dateTypePrices() {
+      const filterCalendars = this.calendars.filter((d) =>
+        this.$moment(d.date).isSameOrAfter(this.$moment())
+      )
+      // console.log('filterCalendars', filterCalendars)
+
+      // checkin out range
+      const selectDateRange = this.$moment.range(
+        this.checkInDate,
+        this.checkOutDate
+      )
+      const selectDateRangeArray = Array.from(
+        selectDateRange.by('day')
+      ).map((m) => m.format('YYYY/MM/DD'))
+      // console.log('selectDateRangeArray', selectDateRangeArray)
+
+      // date and price map
+      const vm = this
+      const isHoliday = (checkDate) => {
+        const checkDateInfo = filterCalendars?.find((calendar) => {
+          return this.$moment(calendar.date).format('YYYY/MM/DD') === checkDate
+        })
+        return checkDateInfo?.isHoliday ? true : false
+      }
+      const prices = selectDateRangeArray.map((checkDate) => {
+        const template = {
+          date: checkDate,
+          price: isHoliday(checkDate)
+            ? this.checkRoom.holidayPrice
+            : this.checkRoom.normalDayPrice,
+          isHoliday: isHoliday(checkDate),
+        }
+        return template
+      })
+      console.log('prices', prices)
+
+      return prices
+    },
+    checkItems() {
+      const items = []
+      const holidays = this.dateTypePrices.filter((price) => price.isHoliday)
+      const normaldays = this.dateTypePrices.filter((price) => !price.isHoliday)
+
+      if (holidays.length > 0) {
+        items.push({
+          price: holidays[0].price,
+          days: holidays.length,
+          itemPrice: holidays[0].price * holidays.length,
+        })
+      }
+      if (normaldays.length > 0) {
+        items.push({
+          price: normaldays[0].price,
+          days: normaldays.length,
+          itemPrice: normaldays[0].price * normaldays.length,
+        })
+      }
+      return items
+    },
+    totalPrice() {
+      return this.checkItems.reduce((acc, cur) => acc + cur.itemPrice, 0)
+    },
   },
-  mounted() {
+  async mounted() {
     console.log('checkTimeRange', this.checkTimeRange)
     console.log('checkRoom', this.checkRoom)
+
+    // If timeRange or roomType empty, then return back to index
     if (
       !this.checkTimeRange.length === 0 ||
       Object.keys(this.checkRoom).length === 0
     ) {
       this.$router.push('/')
     }
+
+    // get calendars
+    const calendars = await this.$store.dispatch('calendar/fetchCalendars')
+    this.calendars = calendars
   },
+  methods: {
+    async bookHandler() {
+      await this.$store.dispatch('rooms/bookRoom', {
+        id: this.checkRoom.id,
+        name: this.form.name,
+        tel: this.form.phone,
+        date: this.selectDateRangeArray.map((d) => this.$moment(d).format('YYYY-MM-DD'))
+      }).catch(e => {
+        if (e.response.data.message) {
+          alert(e.response.data.message)
+        } else {
+          alert(e)
+        }
+      })
+    }
+  }
 }
 </script>
 
