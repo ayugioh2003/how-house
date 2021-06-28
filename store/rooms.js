@@ -5,6 +5,7 @@ export const state = () => ({
   room: {},
   checkTimeRange: [],
   checkRoom: {},
+  bookRoomResult: {},
 })
 
 export const mutations = {
@@ -19,6 +20,9 @@ export const mutations = {
   },
   SET_CHECK_ROOM(state, checkRoom) {
     state.checkRoom = checkRoom
+  },
+  SET_BOOK_ROOM_RESULT(state, bookRoomResult) {
+    state.bookRoomResult = bookRoomResult
   },
 }
 

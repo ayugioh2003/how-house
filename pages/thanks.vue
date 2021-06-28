@@ -8,29 +8,46 @@
         Received!
       </div>
       <!-- infos -->
-      <div class="infos">
+      <div v-if="bookRoomResult" class="infos">
         <div class="divider"></div>
         <div class="infos-group">
           <div class="infos-group__name">GUSET</div>
-          <div class="infos-group__value">Annalise Parisian</div>
+          <div class="infos-group__value">
+            {{ bookRoomResult.booking[0].name }}
+          </div>
         </div>
         <div class="infos-group">
           <div class="infos-group__name">PHONE</div>
-          <div class="infos-group__value">+886 9 32 456 789</div>
+          <div class="infos-group__value">
+            {{ bookRoomResult.booking[0].tel }}
+          </div>
         </div>
         <div class="divider"></div>
         <div class="infos-group">
           <div class="infos-group__name">ROOM</div>
-          <div class="infos-group__value">+deluxe single room / 5 nights</div>
+          <div class="infos-group__value">
+            <!-- +deluxe single room / 5 nights -->
+            {{
+              `${bookRoomResult.room[0].name} / ${bookRoomResult.booking.length} nights`
+            }}
+          </div>
         </div>
         <div class="divider"></div>
         <div class="infos-group">
           <div class="infos-group__name">CHECK-IN</div>
-          <div class="infos-group__value">2019/08/07</div>
+          <div class="infos-group__value">
+            {{ bookRoomResult.booking[0].date }}
+          </div>
         </div>
         <div class="infos-group">
           <div class="infos-group__name">CHECK-OUT</div>
-          <div class="infos-group__value">2019/08/12</div>
+          <div class="infos-group__value">
+            {{
+              bookRoomResult.booking.length > 1
+                ? bookRoomResult.booking[bookRoomResult.booking.length - 1].date
+                : bookRoomResult.booking[0].date
+            }}
+          </div>
         </div>
         <div class="divider"></div>
       </div>
@@ -38,12 +55,33 @@
       <!-- buttons -->
       <div class="buttons">
         <div class="btn">EDIT RESERVATION</div>
-        <div class="btn btn-secondary">HOMEPAGE</div>
+        <div class="btn btn-secondary" @click="$router.push('/')">
+          HOMEPAGE
+        </div>
       </div>
     </div>
     <FooterReservation />
   </div>
 </template>
+
+<script>
+// import { mapFields } from 'vuex-map-fields'
+
+export default {
+  computed: {
+    bookRoomResult() {
+      return this.$store.state.rooms.bookRoomResult
+    },
+    // ...mapFields({
+    //   bookRoomResult: 'rooms/bookRoomResult',
+    // }),
+  },
+  mounted() {
+    // console.log('result', this.$store.state.rooms.bookRoomResult)
+    // console.log('bookRoomResult', this.bookRoomResult)
+  },
+}
+</script>
 
 <style lang="scss" scoped>
 .thanks {

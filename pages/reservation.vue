@@ -201,7 +201,13 @@ export default {
         name: this.form.name,
         tel: this.form.phone,
         date: this.selectDateRangeArray.map((d) => this.$moment(d).format('YYYY-MM-DD'))
-      }).catch(e => {
+      })
+      .then(res => {
+        this.$store.commit('rooms/SET_BOOK_ROOM_RESULT', res.data)
+        console.log('result', this.$store.state.rooms.bookRoomResult)
+        this.$router.push('/thanks')
+      })
+      .catch(e => {
         if (e.response.data.message) {
           alert(e.response.data.message)
         } else {
