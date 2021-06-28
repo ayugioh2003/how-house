@@ -15,6 +15,7 @@ $input-hover-border-color: transparent; // #409aff !default;
 $disabled-color: #ccc !default;
 $disabled-background-color: #f3f3f3 !default;
 
+
 $border-color: transparent; // #e8e8e8 !default;
 
 $calendar-active-color: #fff !default;
@@ -45,4 +46,9 @@ $sidebar-margin-left: 100px !default;
 
 td.active div {
   @apply text-white;
+}
+
+// disabled 的文字被 main.scss 的設定蓋過去了 orz
+.cell.disabled div{
+  color: $disabled-color;
 }
