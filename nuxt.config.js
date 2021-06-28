@@ -51,6 +51,10 @@ export default {
       src: '~/plugins/vue2-datepicker.js',
       ssr: false,
     },
+    // DOC: https://juejin.cn/post/6904916344731336718
+    {
+      src: '@/plugins/moment.js',
+    },
   ],
   /*
    ** Auto import components
