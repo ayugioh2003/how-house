@@ -108,9 +108,10 @@ export default {
       let str = ''
       if (e.response) {
         // if (e.response.message) str = e.response.message
-        str = e.response.toString()
+        str = `${e.response.toString()}, api_url: ${process.env.HOTEL_API}`
       } else {
-        str = e.toString()
+        str = `${e.response.toString()}, api_url: ${process.env.HOTEL_API}`
+        // str = e.toString()
         // str = 'Unable to fetch rooms at this time, Please try again later.'
       }
 
