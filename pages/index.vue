@@ -99,18 +99,11 @@ export default {
     HouseMap,
   },
   async fetch({ store, error }) {
-    this.isLandingFromServer = true
-
     try {
       await store.dispatch('rooms/fetchRooms')
     } catch (e) {
       let str = ''
       str = e.toString()
-      // if (e.response) {
-      //   if (e.response.message) str = e.response.message
-      // } else {
-      //   str = e.toString()
-      // }
 
       error({
         statusCode: 503,
@@ -142,24 +135,6 @@ export default {
     rooms: (state) => state.rooms.rooms,
     room: (state) => state.rooms.room,
   }),
-  mounted() {
-    console.log('this.isLandingFromServer', this.isLandingFromServer)
-    // if (!this.isLandingFromServer) {
-    //   try {
-    //     await this.$store.dispatch('rooms/fetchRooms')
-    //   } catch (e) {
-    //     let str = ''
-
-    //     if (e.response) {
-    //       if (e.response.message) str = e.response.message
-    //     } else {
-    //       str = e.toString()
-    //     }
-
-    //     console.error(str)
-    //   }
-    // }
-  },
   methods: {
     onRoomClick(roomId) {
       this.$router.push({ name: 'room-id', params: { id: roomId } })
