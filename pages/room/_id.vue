@@ -275,7 +275,7 @@ export default {
       )
     },
   },
-  async created() {
+  created() {
     const room = this.rooms.find((item) => item.id === this.id)
     this.$store.commit('rooms/SET_CHECK_ROOM', room)
 
