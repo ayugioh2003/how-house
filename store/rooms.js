@@ -1,4 +1,4 @@
-import RoomService from '@/services/RoomService.js'
+import RoomService from '../services/RoomService.js'
 
 export const state = () => ({
   rooms: [],
