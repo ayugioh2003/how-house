@@ -142,23 +142,23 @@ export default {
     rooms: (state) => state.rooms.rooms,
     room: (state) => state.rooms.room,
   }),
-  async mounted() {
+  mounted() {
     console.log('this.isLandingFromServer', this.isLandingFromServer)
-    if (!this.isLandingFromServer) {
-      try {
-        await this.$store.dispatch('rooms/fetchRooms')
-      } catch (e) {
-        let str = ''
+    // if (!this.isLandingFromServer) {
+    //   try {
+    //     await this.$store.dispatch('rooms/fetchRooms')
+    //   } catch (e) {
+    //     let str = ''
 
-        if (e.response) {
-          if (e.response.message) str = e.response.message
-        } else {
-          str = e.toString()
-        }
+    //     if (e.response) {
+    //       if (e.response.message) str = e.response.message
+    //     } else {
+    //       str = e.toString()
+    //     }
 
-        console.error(str)
-      }
-    }
+    //     console.error(str)
+    //   }
+    // }
   },
   methods: {
     onRoomClick(roomId) {

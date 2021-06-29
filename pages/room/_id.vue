@@ -280,9 +280,9 @@ export default {
     this.$store.commit('rooms/SET_CHECK_ROOM', room)
 
     console.log('this.isLandingFromServer', this.isLandingFromServer)
-    if (!this.isLandingFromServer) {
-      await this.fetchInitApi()
-    }
+    // if (!this.isLandingFromServer) {
+    //   await this.fetchInitApi()
+    // }
   },
   methods: {
     isDisabledDate(checkDate) {
