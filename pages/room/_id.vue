@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="" />
 
     <!-- header -->
-    <header class="header container mx-auto">
+    <header class="header container mx-auto" v-if="room && room.room">
       <div class="header-head">
         <h1 class="header__title">{{ room.room[0].name }}</h1>
         <div
@@ -286,7 +286,8 @@ export default {
   },
   methods: {
     isDisabledDate(checkDate) {
-      const isDateBooked = this.room.booking.some(
+      const booking = this.room && this.room.booking ? this.room.booking : []
+      const isDateBooked = booking.some(
         (bookedObj) =>
           this.$moment(bookedObj.date).format('YYYY-MM-DD') ===
           this.$moment(checkDate).format('YYYY-MM-DD')

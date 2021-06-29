@@ -165,7 +165,7 @@ export default {
       this.$router.push({ name: 'room-id', params: { id: roomId } })
     },
     isDisabledDate(checkDate) {
-      const booking = this.room.booking ? this.room.booking : []
+      const booking = this.room && this.room.booking ? this.room.booking : []
       const isDateBooked = booking.some(
         (bookedObj) =>
           this.$moment(bookedObj.date).format('YYYY-MM-DD') ===

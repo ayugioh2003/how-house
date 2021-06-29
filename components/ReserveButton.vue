@@ -77,10 +77,6 @@ export default {
       try {
         await this.$store.dispatch('rooms/fetchRoom', this.checkRoom.id)
       } catch (error) {
-        error({
-          statusCode: 503,
-          message: 'Unable to fetch room at this time, Please try again later.',
-        })
         // eslint-disable-next-line no-console
         await console.error(error)
       }
