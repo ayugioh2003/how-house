@@ -137,7 +137,7 @@ export default {
         const checkDateInfo = filterCalendars.find((calendar) => {
           return this.$moment(calendar.date).format('YYYY/MM/DD') === checkDate
         })
-        return checkDateInfo.isHoliday ? true : false
+        return checkDateInfo && checkDateInfo.isHoliday ? true : false
       }
       const prices = selectDateRangeArray.map((checkDate) => {
         const template = {

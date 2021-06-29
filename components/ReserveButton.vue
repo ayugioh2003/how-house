@@ -73,7 +73,7 @@ export default {
       // console.log('this.checkRoom', this.checkRoom)
 
       // 取得 room 的 boooking
-      console.log('this.checkRoom.id', this.checkRoom.id)
+      // console.log('this.checkRoom.id', this.checkRoom.id)
       try {
         await this.$store.dispatch('rooms/fetchRoom', this.checkRoom.id)
       } catch (error) {

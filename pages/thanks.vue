@@ -76,7 +76,7 @@ export default {
   methods: {
     async deleteBookings() {
       await this.$store.dispatch('rooms/deleteBookings').then((res) => {
-        console.log('delete res', res)
+        // console.log('delete res', res)
         if (res.data.success) {
           alert('刪除成功！')
           this.$router.push('/')
