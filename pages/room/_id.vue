@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="" />
 
     <!-- header -->
-    <header v-if="room && room.room" class="header container mx-auto">
+    <header class="header container mx-auto">
       <div class="header-head">
         <h1 class="header__title">{{ room.room[0].name }}</h1>
         <div
@@ -43,7 +43,7 @@
     </header>
 
     <!-- description -->
-    <div v-if="room && room.room" class="container mx-auto">
+    <div class="container mx-auto">
       <section class="description">
         <div class="description__title">Description</div>
         <p class="mb-6">
@@ -78,7 +78,7 @@
     </div>
 
     <!-- amenities 設施 -->
-    <div v-if="room && room.room" class="container mx-auto">
+    <div class="container mx-auto">
       <section class="amenities">
         <div class="amenities__title op">Amenities</div>
         <ul>
@@ -171,7 +171,7 @@
     </div>
 
     <!-- availability -->
-    <div v-if="room && room.room" class="availability container mx-auto">
+    <div class="availability container mx-auto">
       <div class="availability__title">Availability</div>
       <!-- <div class="date-picker"></div> -->
       <date-picker
