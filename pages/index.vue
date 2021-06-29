@@ -112,7 +112,7 @@ export default {
           process.env.HOTEL_API
         }`
       } else {
-        str = `${e.response.toString()}, api_url: ${process.env.HOTEL_API}`
+        str = `${e.toString()}, api_url: ${process.env.HOTEL_API}`
         // str = e.toString()
         // str = 'Unable to fetch rooms at this time, Please try again later.'
       }
