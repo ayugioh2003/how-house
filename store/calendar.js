@@ -1,4 +1,4 @@
-import CalendarService from '../services/CalendarService.js'
+import CalendarService from '@/Services/CalendarService.js'
 
 export const state = () => ({
   calendar: [],
