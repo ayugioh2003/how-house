@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="" />
 
     <!-- header -->
-    <header class="header container mx-auto" v-if="room && room.room">
+    <header v-if="room && room.room" class="header container mx-auto">
       <div class="header-head">
         <h1 class="header__title">{{ room.room[0].name }}</h1>
         <div
@@ -200,12 +200,12 @@ export default {
       await store.dispatch('rooms/fetchRoom', route.params.id)
     } catch (e) {
       let str = ''
-
-      if (e.response) {
-        if (e.response.message) str = e.response.message
-      } else {
-        str = e.toString()
-      }
+      str = e.toString()
+      // if (e.response) {
+      //   if (e.response.message) str = e.response.message
+      // } else {
+      //   str = e.toString()
+      // }
 
       error({
         statusCode: 503,
@@ -216,12 +216,12 @@ export default {
       await store.dispatch('rooms/fetchRooms')
     } catch (e) {
       let str = ''
-
-      if (e.response) {
-        if (e.response.message) str = e.response.message
-      } else {
-        str = e.toString()
-      }
+      str = e.toString()
+      // if (e.response) {
+      //   if (e.response.message) str = e.response.message
+      // } else {
+      //   str = e.toString()
+      // }
 
       error({
         statusCode: 503,

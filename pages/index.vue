@@ -105,12 +105,12 @@ export default {
       await store.dispatch('rooms/fetchRooms')
     } catch (e) {
       let str = ''
-
-      if (e.response) {
-        if (e.response.message) str = e.response.message
-      } else {
-        str = e.toString()
-      }
+      str = e.toString()
+      // if (e.response) {
+      //   if (e.response.message) str = e.response.message
+      // } else {
+      //   str = e.toString()
+      // }
 
       error({
         statusCode: 503,
