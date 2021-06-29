@@ -104,10 +104,11 @@ export default {
     } catch (e) {
       this.error = e
       console.log(e)
-      // error({
-      //   statusCode: 503,
-      //   message: 'Unable to fetch rooms at this time, Please try again later.',
-      // })
+      error({
+        statusCode: 503,
+        message: e,
+        // message: 'Unable to fetch rooms at this time, Please try again later.',
+      })
     }
   },
   data() {
