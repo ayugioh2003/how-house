@@ -195,6 +195,7 @@ import { mapFields } from 'vuex-map-fields'
 
 export default {
   async fetch({ store, route, error }) {
+    this.isLandingFromServer = true
     try {
       await store.dispatch('rooms/fetchRoom', route.params.id)
     } catch (e) {
@@ -209,7 +210,6 @@ export default {
       error({
         statusCode: 503,
         message: str,
-        // message: 'Unable to fetch rooms at this time, Please try again later.',
       })
     }
     try {
@@ -226,8 +226,12 @@ export default {
       error({
         statusCode: 503,
         message: str,
-        // message: 'Unable to fetch rooms at this time, Please try again later.',
       })
+    }
+  },
+  data() {
+    return {
+      isLandingFromServer: false,
     }
   },
   computed: {
@@ -271,9 +275,14 @@ export default {
       )
     },
   },
-  mounted() {
+  async mounted() {
     const room = this.rooms.find((item) => item.id === this.id)
     this.$store.commit('rooms/SET_CHECK_ROOM', room)
+
+    console.log('this.isLandingFromServer', this.isLandingFromServer)
+    if (this.isLandingFromServer) {
+      await this.fetchInitApi()
+    }
   },
   methods: {
     isDisabledDate(checkDate) {
@@ -291,6 +300,36 @@ export default {
 
       const result = isDateBooked || isBeforeToday || isAfterNinetyDays
       return result
+    },
+    async fetchInitApi() {
+      try {
+        await this.$store.dispatch('rooms/fetchRoom', this.route.params.id)
+      } catch (e) {
+        let str = ''
+
+        if (e.response) {
+          if (e.response.message) str = e.response.message
+        } else {
+          str = e.toString()
+        }
+        console.error(str)
+      }
+
+      try {
+        await this.$store.dispatch('rooms/fetchRooms')
+      } catch (e) {
+        let str = ''
+
+        if (e.response) {
+          if (e.response.message) str = e.response.message
+        } else {
+          str = e.toString()
+        }
+
+        console.error(str)
+      }
+
+      return 'done'
     },
   },
 }

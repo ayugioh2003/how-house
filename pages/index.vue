@@ -99,6 +99,8 @@ export default {
     HouseMap,
   },
   async fetch({ store, error }) {
+    this.isLandingFromServer = true
+
     try {
       await store.dispatch('rooms/fetchRooms')
     } catch (e) {
@@ -133,13 +135,31 @@ export default {
           description: 'Wanna a big room? there you are',
         },
       ],
-      errorCode: null,
+      isLandingFromServer: false,
     }
   },
   computed: mapState({
     rooms: (state) => state.rooms.rooms,
     room: (state) => state.rooms.room,
   }),
+  async mounted() {
+    console.log('this.isLandingFromServer', this.isLandingFromServer)
+    if (this.isLandingFromServer) {
+      try {
+        await this.$store.dispatch('rooms/fetchRooms')
+      } catch (e) {
+        let str = ''
+
+        if (e.response) {
+          if (e.response.message) str = e.response.message
+        } else {
+          str = e.toString()
+        }
+
+        console.error(str)
+      }
+    }
+  },
   methods: {
     onRoomClick(roomId) {
       this.$router.push({ name: 'room-id', params: { id: roomId } })
