@@ -194,41 +194,41 @@ import { mapState } from 'vuex'
 import { mapFields } from 'vuex-map-fields'
 
 export default {
-  // async fetch({ store, route, error }) {
-  //   this.isLandingFromServer = true
-  //   try {
-  //     await store.dispatch('rooms/fetchRoom', route.params.id)
-  //   } catch (e) {
-  //     let str = ''
-  //     str = e.toString()
-  //     // if (e.response) {
-  //     //   if (e.response.message) str = e.response.message
-  //     // } else {
-  //     //   str = e.toString()
-  //     // }
+  async fetch({ store, route, error }) {
+    this.isLandingFromServer = true
+    try {
+      await store.dispatch('rooms/fetchRoom', route.params.id)
+    } catch (e) {
+      let str = ''
+      str = e.toString()
+      // if (e.response) {
+      //   if (e.response.message) str = e.response.message
+      // } else {
+      //   str = e.toString()
+      // }
 
-  //     error({
-  //       statusCode: 503,
-  //       message: str,
-  //     })
-  //   }
-  //   try {
-  //     await store.dispatch('rooms/fetchRooms')
-  //   } catch (e) {
-  //     let str = ''
-  //     str = e.toString()
-  //     // if (e.response) {
-  //     //   if (e.response.message) str = e.response.message
-  //     // } else {
-  //     //   str = e.toString()
-  //     // }
+      error({
+        statusCode: 503,
+        message: str,
+      })
+    }
+    try {
+      await store.dispatch('rooms/fetchRooms')
+    } catch (e) {
+      let str = ''
+      str = e.toString()
+      // if (e.response) {
+      //   if (e.response.message) str = e.response.message
+      // } else {
+      //   str = e.toString()
+      // }
 
-  //     error({
-  //       statusCode: 503,
-  //       message: str,
-  //     })
-  //   }
-  // },
+      error({
+        statusCode: 503,
+        message: str,
+      })
+    }
+  },
   asyncData() {
     return {
       isLandingFromServer: false,

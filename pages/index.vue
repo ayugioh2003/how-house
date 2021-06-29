@@ -98,27 +98,27 @@ export default {
     Check,
     HouseMap,
   },
-  // async fetch({ store, error }) {
-  //   this.isLandingFromServer = true
+  async fetch({ store, error }) {
+    this.isLandingFromServer = true
 
-  //   try {
-  //     await store.dispatch('rooms/fetchRooms')
-  //   } catch (e) {
-  //     let str = ''
-  //     str = e.toString()
-  //     // if (e.response) {
-  //     //   if (e.response.message) str = e.response.message
-  //     // } else {
-  //     //   str = e.toString()
-  //     // }
+    try {
+      await store.dispatch('rooms/fetchRooms')
+    } catch (e) {
+      let str = ''
+      str = e.toString()
+      // if (e.response) {
+      //   if (e.response.message) str = e.response.message
+      // } else {
+      //   str = e.toString()
+      // }
 
-  //     error({
-  //       statusCode: 503,
-  //       message: str,
-  //       // message: 'Unable to fetch rooms at this time, Please try again later.',
-  //     })
-  //   }
-  // },
+      error({
+        statusCode: 503,
+        message: str,
+        // message: 'Unable to fetch rooms at this time, Please try again later.',
+      })
+    }
+  },
   asyncData() {
     return {
       roomType: [
