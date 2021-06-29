@@ -13,6 +13,12 @@
     "lint": "npm run lint:js && npm run lint:style",
     "heroku-postbuild": "npm run build"
   },
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "80"
+    }
+  },
   "dependencies": {
     "@nuxt/content": "^1.3.2",
     "@nuxtjs/axios": "^5.11.0",
