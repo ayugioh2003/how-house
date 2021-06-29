@@ -135,8 +135,9 @@ export default {
     room: (state) => state.rooms.room,
   }),
   mounted() {
-    console.log(this.errorCode)
-    console.log(this.errorCode.response)
+    console.log('this.errorCode', this.errorCode)
+    const response = this.errorCode ? this.errorCode.response : null
+    console.log('this.errorCode response', response)
   },
   methods: {
     onRoomClick(roomId) {
