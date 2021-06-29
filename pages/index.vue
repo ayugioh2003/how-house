@@ -106,8 +106,8 @@ export default {
       console.log(e)
       error({
         statusCode: 503,
-        message: e,
-        // message: 'Unable to fetch rooms at this time, Please try again later.',
+        // message: e,
+        message: 'Unable to fetch rooms at this time, Please try again later.',
       })
     }
   },
