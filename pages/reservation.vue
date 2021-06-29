@@ -134,7 +134,7 @@ export default {
       // date and price map
       const vm = this
       const isHoliday = (checkDate) => {
-        const checkDateInfo = filterCalendars?.find((calendar) => {
+        const checkDateInfo = filterCalendars.find((calendar) => {
           return this.$moment(calendar.date).format('YYYY/MM/DD') === checkDate
         })
         return checkDateInfo?.isHoliday ? true : false
