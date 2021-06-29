@@ -229,7 +229,7 @@ export default {
       })
     }
   },
-  data() {
+  asyncData() {
     return {
       isLandingFromServer: false,
     }
