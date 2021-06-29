@@ -43,7 +43,7 @@
     </header>
 
     <!-- description -->
-    <div class="container mx-auto">
+    <div v-if="room && room.room" class="container mx-auto">
       <section class="description">
         <div class="description__title">Description</div>
         <p class="mb-6">
@@ -78,7 +78,7 @@
     </div>
 
     <!-- amenities 設施 -->
-    <div class="container mx-auto">
+    <div v-if="room && room.room" class="container mx-auto">
       <section class="amenities">
         <div class="amenities__title op">Amenities</div>
         <ul>
@@ -171,7 +171,7 @@
     </div>
 
     <!-- availability -->
-    <div class="availability container mx-auto">
+    <div v-if="room && room.room" class="availability container mx-auto">
       <div class="availability__title">Availability</div>
       <!-- <div class="date-picker"></div> -->
       <date-picker
@@ -194,41 +194,41 @@ import { mapState } from 'vuex'
 import { mapFields } from 'vuex-map-fields'
 
 export default {
-  async fetch({ store, route, error }) {
-    this.isLandingFromServer = true
-    try {
-      await store.dispatch('rooms/fetchRoom', route.params.id)
-    } catch (e) {
-      let str = ''
-      str = e.toString()
-      // if (e.response) {
-      //   if (e.response.message) str = e.response.message
-      // } else {
-      //   str = e.toString()
-      // }
+  // async fetch({ store, route, error }) {
+  //   this.isLandingFromServer = true
+  //   try {
+  //     await store.dispatch('rooms/fetchRoom', route.params.id)
+  //   } catch (e) {
+  //     let str = ''
+  //     str = e.toString()
+  //     // if (e.response) {
+  //     //   if (e.response.message) str = e.response.message
+  //     // } else {
+  //     //   str = e.toString()
+  //     // }
 
-      error({
-        statusCode: 503,
-        message: str,
-      })
-    }
-    try {
-      await store.dispatch('rooms/fetchRooms')
-    } catch (e) {
-      let str = ''
-      str = e.toString()
-      // if (e.response) {
-      //   if (e.response.message) str = e.response.message
-      // } else {
-      //   str = e.toString()
-      // }
+  //     error({
+  //       statusCode: 503,
+  //       message: str,
+  //     })
+  //   }
+  //   try {
+  //     await store.dispatch('rooms/fetchRooms')
+  //   } catch (e) {
+  //     let str = ''
+  //     str = e.toString()
+  //     // if (e.response) {
+  //     //   if (e.response.message) str = e.response.message
+  //     // } else {
+  //     //   str = e.toString()
+  //     // }
 
-      error({
-        statusCode: 503,
-        message: str,
-      })
-    }
-  },
+  //     error({
+  //       statusCode: 503,
+  //       message: str,
+  //     })
+  //   }
+  // },
   asyncData() {
     return {
       isLandingFromServer: false,
@@ -275,12 +275,12 @@ export default {
       )
     },
   },
-  async mounted() {
+  async created() {
     const room = this.rooms.find((item) => item.id === this.id)
     this.$store.commit('rooms/SET_CHECK_ROOM', room)
 
     console.log('this.isLandingFromServer', this.isLandingFromServer)
-    if (this.isLandingFromServer) {
+    if (!this.isLandingFromServer) {
       await this.fetchInitApi()
     }
   },
@@ -304,7 +304,7 @@ export default {
     },
     async fetchInitApi() {
       try {
-        await this.$store.dispatch('rooms/fetchRoom', this.route.params.id)
+        await this.$store.dispatch('rooms/fetchRoom', this.$route.params.id)
       } catch (e) {
         let str = ''
 

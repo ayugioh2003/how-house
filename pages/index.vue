@@ -11,7 +11,7 @@
     </header>
 
     <!-- Recommend -->
-    <section class="recommend container mx-auto">
+    <section v-if="rooms && rooms[0]" class="recommend container mx-auto">
       <div class="recommend-head">
         <div class="recommend__title title">Recommend</div>
         <div class="recommend__subtitle">
@@ -98,27 +98,27 @@ export default {
     Check,
     HouseMap,
   },
-  async fetch({ store, error }) {
-    this.isLandingFromServer = true
+  // async fetch({ store, error }) {
+  //   this.isLandingFromServer = true
 
-    try {
-      await store.dispatch('rooms/fetchRooms')
-    } catch (e) {
-      let str = ''
-      str = e.toString()
-      // if (e.response) {
-      //   if (e.response.message) str = e.response.message
-      // } else {
-      //   str = e.toString()
-      // }
+  //   try {
+  //     await store.dispatch('rooms/fetchRooms')
+  //   } catch (e) {
+  //     let str = ''
+  //     str = e.toString()
+  //     // if (e.response) {
+  //     //   if (e.response.message) str = e.response.message
+  //     // } else {
+  //     //   str = e.toString()
+  //     // }
 
-      error({
-        statusCode: 503,
-        message: str,
-        // message: 'Unable to fetch rooms at this time, Please try again later.',
-      })
-    }
-  },
+  //     error({
+  //       statusCode: 503,
+  //       message: str,
+  //       // message: 'Unable to fetch rooms at this time, Please try again later.',
+  //     })
+  //   }
+  // },
   asyncData() {
     return {
       roomType: [
@@ -144,7 +144,7 @@ export default {
   }),
   async mounted() {
     console.log('this.isLandingFromServer', this.isLandingFromServer)
-    if (this.isLandingFromServer) {
+    if (!this.isLandingFromServer) {
       try {
         await this.$store.dispatch('rooms/fetchRooms')
       } catch (e) {
