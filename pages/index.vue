@@ -108,7 +108,9 @@ export default {
       let str = ''
       if (e.response) {
         // if (e.response.message) str = e.response.message
-        str = `${e.response.toString()}, api_url: ${process.env.HOTEL_API}`
+        str = `${e.response.message.toString()}, api_url: ${
+          process.env.HOTEL_API
+        }`
       } else {
         str = `${e.response.toString()}, api_url: ${process.env.HOTEL_API}`
         // str = e.toString()

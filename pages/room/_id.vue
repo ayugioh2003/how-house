@@ -206,7 +206,7 @@ export default {
       await console.error(error)
     }
     try {
-      store.dispatch('rooms/fetchRooms')
+      await store.dispatch('rooms/fetchRooms')
     } catch (e) {
       error({
         statusCode: 503,
