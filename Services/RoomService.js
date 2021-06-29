@@ -1,12 +1,14 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
-  baseURL: process.env.HOTEL_API,
+  baseURL: 'https://challenge.thef2e.com/api/thef2e2019/stage6', // process.env.HOTEL_API,
   withCredentials: false,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    Authorization: 'Bearer ' + process.env.TOKEN,
+    Authorization:
+      'Bearer ' +
+      '0P8lKDSl58rZiPSCKjU5vVBHAHYmyEYASGm2362eKTPk81EDFjfddrMO7O7d', // process.env.TOKEN,
   },
 })
 
