@@ -102,8 +102,7 @@ export default {
     try {
       await store.dispatch('rooms/fetchRooms')
     } catch (e) {
-      console.log(e)
-      console.log(e.response)
+      this.error = e
       error({
         statusCode: 503,
         message: 'Unable to fetch rooms at this time, Please try again later.',
@@ -126,12 +125,17 @@ export default {
           description: 'Wanna a big room? there you are',
         },
       ],
+      errorCode: null,
     }
   },
   computed: mapState({
     rooms: (state) => state.rooms.rooms,
     room: (state) => state.rooms.room,
   }),
+  mounted() {
+    console.log(this.errorCode)
+    console.log(this.errorCode.response)
+  },
   methods: {
     onRoomClick(roomId) {
       this.$router.push({ name: 'room-id', params: { id: roomId } })
