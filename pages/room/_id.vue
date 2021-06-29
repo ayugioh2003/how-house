@@ -197,20 +197,36 @@ export default {
   async fetch({ store, route, error }) {
     try {
       await store.dispatch('rooms/fetchRoom', route.params.id)
-    } catch (error) {
+    } catch (e) {
+      let str = ''
+
+      if (e.response) {
+        if (e.response.message) str = e.response.message
+      } else {
+        str = e.toString()
+      }
+
       error({
         statusCode: 503,
-        message: 'Unable to fetch room at this time, Please try again later.',
+        message: str,
+        // message: 'Unable to fetch rooms at this time, Please try again later.',
       })
-      // eslint-disable-next-line no-console
-      await console.error(error)
     }
     try {
       await store.dispatch('rooms/fetchRooms')
     } catch (e) {
+      let str = ''
+
+      if (e.response) {
+        if (e.response.message) str = e.response.message
+      } else {
+        str = e.toString()
+      }
+
       error({
         statusCode: 503,
-        message: 'Unable to fetch rooms at this time, Please try again later.',
+        message: str,
+        // message: 'Unable to fetch rooms at this time, Please try again later.',
       })
     }
   },

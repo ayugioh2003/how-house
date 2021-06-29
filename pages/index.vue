@@ -102,19 +102,12 @@ export default {
     try {
       await store.dispatch('rooms/fetchRooms')
     } catch (e) {
-      this.error = e
-      console.log(e)
-
       let str = ''
+
       if (e.response) {
-        // if (e.response.message) str = e.response.message
-        str = `${e.response.message.toString()}, api_url: ${
-          process.env.HOTEL_API
-        }`
+        if (e.response.message) str = e.response.message
       } else {
-        str = `${e.toString()}, api_url: ${process.env.HOTEL_API}`
-        // str = e.toString()
-        // str = 'Unable to fetch rooms at this time, Please try again later.'
+        str = e.toString()
       }
 
       error({
@@ -147,11 +140,6 @@ export default {
     rooms: (state) => state.rooms.rooms,
     room: (state) => state.rooms.room,
   }),
-  mounted() {
-    console.log('this.errorCode', this.errorCode)
-    const response = this.errorCode ? this.errorCode.response : null
-    console.log('this.errorCode response', response)
-  },
   methods: {
     onRoomClick(roomId) {
       this.$router.push({ name: 'room-id', params: { id: roomId } })
@@ -172,16 +160,6 @@ export default {
 
       const result = isDateBooked || isBeforeToday || isAfterNinetyDays
       return result
-
-      // const isBeforeToday = this.$moment(checkDate).isSameOrBefore(
-      //   this.$moment()
-      // )
-      // const isAfterNinetyDays = this.$moment(checkDate).isAfter(
-      //   this.$moment().add(90, 'days')
-      // )
-
-      // const result = isBeforeToday || isAfterNinetyDays
-      // return result
     },
   },
 }
