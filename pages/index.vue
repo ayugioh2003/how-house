@@ -107,7 +107,8 @@ export default {
 
       let str = ''
       if (e.response) {
-        if (e.response.message) str = e.response.message
+        // if (e.response.message) str = e.response.message
+        str = e.response.toString()
       } else {
         str = e.toString()
         // str = 'Unable to fetch rooms at this time, Please try again later.'
