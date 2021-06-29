@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "nuxt",
     "export": "nuxt export",
     "serve": "nuxt serve",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
