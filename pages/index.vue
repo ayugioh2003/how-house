@@ -102,6 +102,8 @@ export default {
     try {
       await store.dispatch('rooms/fetchRooms')
     } catch (e) {
+      console.log(e)
+      console.log(e.response)
       error({
         statusCode: 503,
         message: 'Unable to fetch rooms at this time, Please try again later.',
