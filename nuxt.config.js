@@ -36,6 +36,13 @@ export default {
       },
     ],
   },
+  // DOC: https://ithelp.ithome.com.tw/articles/10200858
+  // DOC: https://nuxtjs.org/blog/moving-from-nuxtjs-dotenv-to-runtime-config
+  // DOC: https://www.nuxtjs.cn/api/configuration-env
+  env: {
+    HOTEL_API: process.env.HOTEL_API,
+    TOKEN: process.env.TOKEN,
+  },
   /*
    ** Global CSS
    ** See: https://zh.nuxtjs.org/api/configuration-css/
