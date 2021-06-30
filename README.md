@@ -64,7 +64,7 @@ $ npm run generate
 
 - [w6-hotel 設計稿](https://xd.adobe.com/spec/8384ecea-5384-44d2-72a7-94d9b883504d-f5b5/screen/3ee8c726-cbff-4e09-8311-5e1c88525d4a/main-mockup-navbar-fixed)
 
-後端 API，後端採用也使用該活動平台提供的 API、以及
+後端 API，除了用該活動平台提供的 API（取得房間資訊、訂單資訊，以及能送出與刪除訂單）、以及行事曆的公開資料
 
 - [The F2E - 前端修練精神時光屋 | 第六關 - 旅館預約服務 資訊說明](https://challenge.thef2e.com/news/17)
 - [臺北市資料大平臺](https://data.taipei/#/dataset/detail?id=c30ca421-d935-4faa-b523-9c175c8de738)
