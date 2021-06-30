@@ -10,7 +10,6 @@
     @apply cursor-pointer;
   }
 
-
   &-secondary {
     @apply bg-secondary text-white;
     @apply border border-secondary;
@@ -18,4 +17,13 @@
       @apply bg-secondary-dark;
     }
   }
+
+  &-danger {
+    // @apply bg-danger text-white;
+    @apply border border-secondary;
+    &:hover {
+      @apply bg-danger text-white;
+    }
+  }
+
 }
