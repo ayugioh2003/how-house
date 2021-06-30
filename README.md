@@ -1,5 +1,7 @@
 # HowHouse，最優質的訂房網站
 
+![image](https://user-images.githubusercontent.com/5466631/123921492-a1b36d80-d9b9-11eb-8e2d-48d139c1c99d.png)
+
 ## 作品介紹
 
 HowHouse，為旅人提供優質的住宿休息選擇
@@ -69,6 +71,6 @@ $ npm run generate
 
   - [taiwan-holiday.js/opendata-tw.js at master · ensky/taiwan-holiday.js](https://github.com/ensky/taiwan-holiday.js/blob/master/lib/opendata-tw.js)
 
-  更多細節，請看 wiki
+更多細節，請看 wiki
 
 - [Home · ayugioh2003/how-house Wiki](https://github.com/ayugioh2003/how-house/wiki)
