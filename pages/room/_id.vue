@@ -11,7 +11,7 @@
         <div
           class="header__image"
           :style="{
-            backgroundImage: `url(${room.room[0].imageUrl[0]})`,
+            backgroundImage: `url(${room.room[0].imageUrl[selectedImageIndex]})`,
           }"
         ></div>
         <div class="header__price-info">WEEKDAY PRICE</div>
@@ -32,12 +32,13 @@
       </div>
       <div class="header-pics">
         <div
-          v-for="item in room.room[0].imageUrl"
+          v-for="(item, index) in room.room[0].imageUrl"
           :key="item"
           class="header-pics__pic"
           :style="{
             backgroundImage: `url(${item})`,
           }"
+          @click="selectedImageIndex = index"
         ></div>
       </div>
     </header>
@@ -228,6 +229,11 @@ export default {
       isLandingFromServer: false,
     }
   },
+  data() {
+    return {
+      selectedImageIndex: 0,
+    }
+  },
   computed: {
     id() {
       return this.$route.params.id
@@ -374,6 +380,7 @@ export default {
     &__pic {
       width: 160px;
       height: 94px;
+      cursor: pointer;
       @apply bg-center;
       @apply bg-cover;
       @apply mr-4;
