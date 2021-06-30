@@ -27,7 +27,7 @@ HowHouse，為旅人提供優質的住宿休息選擇
   - vue 2.6
   - vue router
   - vuex
-  - nuxt
+  - nuxt: server side render
 - 套件使用
   - axios
   - moment
