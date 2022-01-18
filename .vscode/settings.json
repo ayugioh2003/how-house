@@ -1,7 +1,12 @@
 {
-    "css.validate": false,
-    "scss.validate": false,
-    "i18n-ally.localesPaths": "assets/locales",
-    "i18n-ally.keystyle": "nested",
-    // "tailwindCSS.validate": false
+  "css.validate": false,
+  "scss.validate": false,
+  "i18n-ally.localesPaths": "assets/locales",
+  "i18n-ally.keystyle": "nested",
+  // "tailwindCSS.validate": false
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true,
+    "source.fixAll.eslint": true
+  }
 }
