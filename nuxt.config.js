@@ -42,6 +42,10 @@ export default {
   env: {
     HOTEL_API: process.env.HOTEL_API,
     TOKEN: process.env.TOKEN,
+    PAYMENT_URL: process.env.PAYMENT_URL,
+    MERCHANT_ID: process.env.MERCHANT_ID,
+    HASH_KEY: process.env.HASH_KEY,
+    HASH_IV: process.env.HASH_IV,
   },
   /*
    ** Global CSS
@@ -92,6 +96,9 @@ export default {
     '@nuxt/content',
     // Doc: https://nuxt-community.github.io/nuxt-i18n/basic-usage.html
     // 'nuxt-i18n',
+    // Doc: https://github.com/nuxt-community/community-modules/tree/master/packages/toast
+    // https://github.com/shakee93/vue-toasted
+    '@nuxtjs/toast',
   ],
   /*
    ** Axios module configuration
@@ -122,4 +129,12 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
+
+  serverMiddleware: [
+    {
+      path: '/thanks',
+      handler: '@/server-middleware/postRequestHandler.js',
+    },
+    '@/server-middleware/api.js',
+  ],
 }

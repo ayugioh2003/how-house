@@ -134,7 +134,26 @@ export default {
   computed: mapState({
     rooms: (state) => state.rooms.rooms,
     room: (state) => state.rooms.room,
+    env() {
+      return [
+        process.env.PAYMENT_URL,
+        process.env.MERCHANT_ID,
+        process.env.HASH_KEY,
+        process.env.HASH_IV,
+      ]
+    },
   }),
+  mounted() {
+    if (this.$route.query.from === 'returnURL') {
+      this.$toast.success('已付款', { duration: 2000 })
+    }
+
+    if (this.$route.query.from === 'clientBackURL') {
+      this.$toast.info('已取消付款', { duration: 2000 })
+    }
+
+    this.$router.replace({ query: null })
+  },
   methods: {
     onRoomClick(roomId) {
       this.$router.push({ name: 'room-id', params: { id: roomId } })

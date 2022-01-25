@@ -30,7 +30,9 @@
         <section class="reservation-infos">
           <div class="reservation-infos__image"></div>
           <div class="reservation-infos__info">
-            <div class="reservation-infos__room-name">Deluxe single Room</div>
+            <div class="reservation-infos__room-name">
+              {{ $store.state.rooms.checkRoom.name }}
+            </div>
           </div>
           <div class="reservation-infos__info">
             <div class="reservation-infos__info-icon">
@@ -70,6 +72,7 @@
         </section>
       </main>
     </div>
+
     <FooterReservation />
   </div>
 </template>
@@ -77,6 +80,7 @@
 <script>
 /* eslint-disable */
 import { mapFields } from 'vuex-map-fields'
+import OrderService from '@/Services/OrderService'
 
 export default {
   data() {
@@ -84,9 +88,11 @@ export default {
       form: {
         name: '',
         phone: '',
-        date: this.selectDateRangeArray || []
+        date: this.selectDateRangeArray || [],
       },
       calendars: [],
+      //
+      orderResult: {},
     }
   },
   computed: {
@@ -196,25 +202,44 @@ export default {
   },
   methods: {
     async bookHandler() {
-      await this.$store.dispatch('rooms/bookRoom', {
+      const data = {
         id: this.checkRoom.id,
         name: this.form.name,
         tel: this.form.phone,
-        date: this.selectDateRangeArray.map((d) => this.$moment(d).format('YYYY-MM-DD'))
-      })
-      .then(res => {
-        this.$store.commit('rooms/SET_BOOK_ROOM_RESULT', res.data)
-        this.$router.push('/thanks')
-      })
-      .catch(e => {
-        if (e.response.data.message) {
-          alert(e.response.data.message)
-        } else {
-          alert(e)
-        }
-      })
-    }
-  }
+        date: this.selectDateRangeArray.map((d) =>
+          this.$moment(d).format('YYYY-MM-DD')
+        ),
+      }
+
+      // 送出金流
+      // this.$refs.Spgateway.submit()
+
+      await this.$store
+        .dispatch('rooms/bookRoom', data)
+        .then(async (res) => {
+          this.$store.commit('rooms/SET_BOOK_ROOM_RESULT', res.data)
+
+          // 在 server 建立暫存訂單
+          const createOrderRes = await OrderService.createOrder({
+            ...res.data,
+            totalPrice: this.totalPrice,
+          })
+          console.log('createOrderRes', createOrderRes)
+
+          this.$router.push({
+            name: 'thanks',
+            query: { orderId: createOrderRes.data.orderId },
+          })
+        })
+        .catch((e) => {
+          if (e.response.data.message) {
+            alert(e.response.data.message)
+          } else {
+            alert(e)
+          }
+        })
+    },
+  },
 }
 </script>
 
