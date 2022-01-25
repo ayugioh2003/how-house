@@ -131,10 +131,10 @@ export default {
   build: {},
 
   serverMiddleware: [
-    {
-      path: '/thanks',
-      handler: './server-middleware/postRequestHandler.js',
-    },
-    './server-middleware/api.js',
+    // {
+    //   path: '/thanks',
+    //   handler: './server-middleware/postRequestHandler.js',
+    // },
+    '@/server-middleware/api.js',
   ],
 }
