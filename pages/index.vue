@@ -146,13 +146,13 @@ export default {
   mounted() {
     if (this.$route.query.from === 'returnURL') {
       this.$toast.success('已付款', { duration: 2000 })
+      this.$router.replace({ query: null })
     }
 
     if (this.$route.query.from === 'clientBackURL') {
       this.$toast.info('已取消付款', { duration: 2000 })
+      this.$router.replace({ query: null })
     }
-
-    this.$router.replace({ query: null })
   },
   methods: {
     onRoomClick(roomId) {
