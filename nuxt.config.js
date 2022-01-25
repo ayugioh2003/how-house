@@ -133,8 +133,8 @@ export default {
   serverMiddleware: [
     {
       path: '/thanks',
-      handler: '@/server-middleware/postRequestHandler.js',
+      handler: './server-middleware/postRequestHandler.js',
     },
-    '@/server-middleware/api.js',
+    './server-middleware/api.js',
   ],
 }
