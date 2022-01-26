@@ -6,7 +6,7 @@ const HashIV = process.env.HASH_IV
 
 const PayGateWay = 'https://ccore.newebpay.com/MPG/mpg_gateway'
 const ReturnURL = URL + '/?from=returnURL'
-const NotifyURL = URL + '/?from=NotifyURL'
+const NotifyURL = URL + '/api/notifyURL'
 // const ReturnURL = URL + '/newebpay/callback?from=ReturnURL'
 // const ClientBackURL = URL + '/orders'
 const ClientBackURL = URL + '/?from=clientBackURL'
